@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
    <rect fill="#000" width="1000" height="1000"/>
-   <g transform="rotate(45 500 500)">
-      <path fill="#fff" stroke="#fff" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" d="M 375,350 C 350,350 350,300 375,300 C 400,300 400,275 400,250 L 400,225 C 400,100 600,100 600,225 L 600,250 C 600,275 600,300 625,300 C 650,300 650,350 625,350 L 375,350z"/>
-      <path fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" d="M 400,325 L 600,325 L 600,550 L 550,550 L 550,575 L 600,575 L 600,600 L 550,600 L 550,625 L 600,625 L 600,650 L 550,650 L 550,675 L 600,675 L 600,725 C 600,800 525,775 525,825 L 525,850 L 475,850 L 475,825 C 475,775 400,800 400,725 L 400,325z M 450,425 L 450,725"/>
+   <g transform="rotate(45 500 500)" stroke="#fff" stroke-width="20" stroke-linejoin="round" stroke-linecap="round">
+      <path fill="#fff" d="M 375,350 C 350,350 350,300 375,300 C 400,300 400,275 400,250 L 400,225 C 400,100 600,100 600,225 L 600,250 C 600,275 600,300 625,300 C 650,300 650,350 625,350 L 375,350z"/>
+      <path fill="none" d="M 400,325 L 600,325 L 600,550 L 550,550 L 550,575 L 600,575 L 600,600 L 550,600 L 550,625 L 600,625 L 600,650 L 550,650 L 550,675 L 600,675 L 600,725 C 600,800 525,775 525,825 L 525,850 L 475,850 L 475,825 C 475,775 400,800 400,725 L 400,325z M 450,425 L 450,725"/>
    </g>
 </svg>
