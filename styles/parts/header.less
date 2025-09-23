@@ -9,29 +9,21 @@ header {
    
    /* Appbar */
    .appbar {
-      background: var(--surface);
-      color: var(--on-surface);
+      background: var(--background);
+      color: var(--on-background);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 8px;
       height: 70px;
       gap: 8px;
-      border-radius: 24px;
+      border-radius: 28px;
       transition: 0.3s;
       
-      .logo {
-         aspect-ratio: 1;
-         height: 100%;
-         background: var(--primary);
-         color: var(--on-primary);
-         border-radius: 16px;
-         transition: 0.3s;
-      }
-      
       .title {
+         padding-inline: 16px;
          flex-grow: 1;
-         text-align: center;
+         text-align: left;
          font-size: 22px;
          font-weight: 700;
       }
@@ -47,13 +39,13 @@ header {
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 16px;
+            border-radius: 20px;
             transition: 0.3s;
             cursor: pointer;
             
             &:hover {
-               background: var(--background);
-               color: var(--on-background);
+               background: var(--surface);
+               color: var(--on-surface);
                
                &:active {
                   scale: 0.9;
@@ -79,10 +71,12 @@ header {
       align-items: stretch;
       padding: 8px;
       gap: 8px;
-      border-radius: 24px;
+      border-radius: 28px;
       transform: rotateX(90deg);
       transform-origin: top center;
+      filter: blur(30px);
       z-index: 10;
+      opacity: 0;
       transition: 0.3s;
       
       &>* {
@@ -101,18 +95,19 @@ header {
          transition: 0.3s;
          
          &:not(a){
-            background: var(--primary-container);
-            color: var(--on-primary-container);
+            background: var(--surface-variant);
+            color: var(--on-surface-variant);
+            border-radius: 22px;
          }
          
          &:first-of-type {
-            border-top-left-radius: 18px;
-            border-top-right-radius: 18px;
+            border-top-left-radius: 22px;
+            border-top-right-radius: 22px;
          }
          
          &:last-of-type {
-            border-bottom-left-radius: 18px;
-            border-bottom-right-radius: 18px;
+            border-bottom-left-radius: 22px;
+            border-bottom-right-radius: 22px;
          }
          
          &>.icon {
@@ -153,6 +148,8 @@ header {
       
       &.open {
          transform: rotateX(0);
+         filter: blur(0);
+         opacity: 1;
       }
    }
 }

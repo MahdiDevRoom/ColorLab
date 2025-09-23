@@ -6,5 +6,11 @@
    --background: hsl(220 40% 7%);
    --on-background: hsl(220 40% 87%);
    --surface: hsl(220 40% 13%);
-   --on-surface: hsl(220 40% 93%);
+   --on-surface: hsl(220 60% 93%);
+   --surface-container: hsl(220 40% 18%);
+   --on-surface-container: hsl(220 60% 98%);
+   --surface-variant: hsl(220 60% 20%);
+   --on-surface-variant: hsl(220 40% 90%);
+   --primary-glass: hsl(220 100% 30% / 0.4);
+   --surface-glass: hsl(220 40% 30% / 0.4);
 }

@@ -16,9 +16,10 @@ if (!storage) {
 
 changeTheme(storage.theme);
 
-toggleMenu.onclick = ()=> {
+toggleMenu.onclick = backdrop.onclick = ()=> {
    menu.classList.toggle('open');
    backdrop.classList.toggle('open');
+   toggleMenu.querySelector('.symbol').innerHTML = menu.classList.contains('open') ? 'close' : 'menu';
 }
    
 
