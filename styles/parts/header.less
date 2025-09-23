@@ -1,13 +1,11 @@
 header {
    
    width: 100%;
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   align-items: stretch;
    padding: 16px;
-   gap: 8px;
    user-select: none;
+   position: sticky;
+   top: 0;
+   z-index: 10;
    
    /* Appbar */
    .appbar {
@@ -25,9 +23,10 @@ header {
       .logo {
          aspect-ratio: 1;
          height: 100%;
-         background: #000;
-         color: #fff;
+         background: var(--primary);
+         color: var(--on-primary);
          border-radius: 16px;
+         transition: 0.3s;
       }
       
       .title {
@@ -68,6 +67,10 @@ header {
    
    /* Navbar */
    .menu {
+      position: fixed;
+      top: 94px;
+      left: 16px;
+      width: calc(100% - 32px);
       background: var(--surface);
       color: var(--on-surface);
       display: flex;
@@ -79,6 +82,7 @@ header {
       border-radius: 24px;
       transform: rotateX(90deg);
       transform-origin: top center;
+      z-index: 10;
       transition: 0.3s;
       
       &>* {
@@ -93,8 +97,13 @@ header {
          padding: 16px;
          background: var(--background);
          color: var(--on-background);
-         border-radius: 8px;
+         border-radius: 4px;
          transition: 0.3s;
+         
+         &:not(a){
+            background: var(--primary-container);
+            color: var(--on-primary-container);
+         }
          
          &:first-of-type {
             border-top-left-radius: 18px;

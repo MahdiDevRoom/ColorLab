@@ -1,5 +1,6 @@
 let toggleMenu = document.querySelector('#toggle-menu');
 let menu = document.querySelector('header .menu');
+let backdrop = document.querySelector('#backdrop');
 let toggleTheme = document.querySelector('#toggle-theme');
 let themeColor = document.querySelector('#theme-color');
 let storage = JSON.parse(localStorage.getItem('storage'));
@@ -17,6 +18,7 @@ changeTheme(storage.theme);
 
 toggleMenu.onclick = ()=> {
    menu.classList.toggle('open');
+   backdrop.classList.toggle('open');
 }
    
 

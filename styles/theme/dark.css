@@ -1,6 +1,10 @@
 :root {
-   --background: #111;
-   --on-background: #ddd;
-   --surface: #222;
-   --on-surface: #eee;
+   --primary: hsl(220 100% 80%);
+   --on-primary: hsl(220 100% 20%);
+   --primary-container: hsl(220 100% 20%);
+   --on-primary-container: hsl(220 100% 90%);
+   --background: hsl(220 40% 7%);
+   --on-background: hsl(220 40% 87%);
+   --surface: hsl(220 40% 13%);
+   --on-surface: hsl(220 40% 93%);
 }
