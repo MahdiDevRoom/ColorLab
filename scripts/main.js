@@ -2,6 +2,7 @@ let toggleMenu = document.querySelector('#toggle-menu');
 let menu = document.querySelector('header .menu');
 let backdrop = document.querySelector('#backdrop');
 let toggleTheme = document.querySelector('#toggle-theme');
+let main = document.querySelector('main');
 let themeColor = document.querySelector('#theme-color');
 let storage = JSON.parse(localStorage.getItem('storage'));
 let changeTheme = (theme) => {
@@ -30,3 +31,4 @@ toggleTheme.onclick = ()=> {
    changeTheme(storage.theme);
 }
    
+main.innerText = new Graphic().virus(12)
