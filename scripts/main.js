@@ -30,5 +30,3 @@ toggleTheme.onclick = ()=> {
    localStorage.setItem('storage',JSON.stringify(storage));
    changeTheme(storage.theme);
 }
-   
-main.innerText = new Graphic().virus(12)
