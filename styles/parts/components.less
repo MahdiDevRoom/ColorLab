@@ -1,0 +1,31 @@
+.c-title {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: stretch;
+   padding-left: 0.6em;
+   
+   .text-view {
+      font-weight: 1000;
+      font-stretch: 20%;
+      font-size: 1em;
+   }
+   .sub-title {
+      opacity: 0.7;
+      font-size: 0.7em;
+      font-stretch: 20%;
+      font-weight: 700;
+   }
+   &::before{
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0.3em;
+      height: 100%;
+      background: var(--secondary);
+      border-radius: 0.3em;
+   }
+}
