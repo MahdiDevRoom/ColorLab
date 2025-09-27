@@ -3,9 +3,11 @@ header {
    width: 100%;
    padding: 16px;
    user-select: none;
-   position: sticky;
+   position: fixed;
    top: 0;
+   left: 0;
    z-index: 10;
+   transition: 0.3s;
    
    /* Appbar */
    .appbar {
@@ -58,7 +60,7 @@ header {
       
    }
    
-   /* Navbar */
+   /* Menu */
    .menu {
       position: fixed;
       top: 94px;
@@ -152,5 +154,22 @@ header {
          filter: blur(0);
          opacity: 1;
       }
+   }
+   
+   /* Sticky */
+   &.sticky {
+      padding: 0;
+      
+      .appbar{
+         border-radius: 0;
+      }
+      
+      .menu {
+         top: 70px;
+         left: 0;
+         width: 100%;
+         border-radius: 0;
+      }
+      
    }
 }

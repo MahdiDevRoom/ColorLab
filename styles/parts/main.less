@@ -1,10 +1,11 @@
 main {
-   
+   margin-top: 86px;
    &>* {
       background: var(--background);
       color: var(--on-background);
       border-radius: 32px 32px 0 0;
       padding: 16px;
+      transition: 0.3s;
    }
    
    &>.poster {
@@ -31,6 +32,7 @@ main {
          flex-direction: column;
          justify-content: center;
          align-items: stretch;
+         transition: 0.3s;
          
          .svg {
             .bg {
@@ -105,11 +107,19 @@ main {
                transition: 0.3s;
             }
             
+            &>.text-view{
+               transition: 0.3s;
+            }
+            
             &:hover {
                font-weight: 1000;
-               font-stretch: 20%;
+               font-stretch: 30%;
                background: var(--surface-variant);
                color: var(--on-surface-variant);
+               
+               .text-view{
+                  scale: 1 2;
+               }
                
                .symbol {
                   font-variation-settings:

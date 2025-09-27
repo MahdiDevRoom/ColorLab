@@ -1,21 +1,20 @@
 :root {
    
-   --primary: hsl(220 100% 80%);
-   --on-primary: hsl(220 100% 20%);
+   --primary: hsl(220 100% 70%);
+   --on-primary: hsl(220 100% 10%);
    --primary-container: hsl(220 100% 20%);
    --on-primary-container: hsl(220 100% 90%);
    
-   --secondary: hsl(300 100% 80%);
-   --on-secondary: hsl(300 100% 20%);
-   --secondary-container: hsl(300 100% 20%);
-   --on-secondary-container: hsl(300 100% 90%);
-
+   --secondary: hsl(300 60% 70%);
+   --on-secondary: hsl(300 60% 20%);
+   --secondary-container: hsl(300 60% 20%);
+   --on-secondary-container: hsl(300 60% 90%);
    
    --background: hsl(220 40% 7%);
    --on-background: hsl(220 40% 87%);
-   --surface: hsl(220 40% 13%);
+   --surface: hsl(220 40% 10%);
    --on-surface: hsl(220 60% 93%);
-   --surface-container: hsl(220 40% 18%);
+   --surface-container: hsl(220 40% 15%);
    --on-surface-container: hsl(220 60% 98%);
    --surface-variant: hsl(220 60% 20%);
    --on-surface-variant: hsl(220 40% 90%);

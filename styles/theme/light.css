@@ -5,13 +5,13 @@
    --primary-container: hsl(24 100% 80%);
    --on-primary-container: hsl(24 100% 10%);
    
-   --secondary: hsl(128 100% 20%);
-   --on-secondary: hsl(128 100% 95%);
-   --secondary-container: hsl(128 100% 80%);
-   --on-secondary-container: hsl(128 100% 10%);
+   --secondary: hsl(128 60% 20%);
+   --on-secondary: hsl(128 60% 95%);
+   --secondary-container: hsl(128 60% 80%);
+   --on-secondary-container: hsl(128 60% 10%);
    
    --background: hsl(24 40% 92%);
-   --on-background: hsl(24 40% 13%);
+   --on-background: hsl(24 40% 30%);
    --surface: hsl(24 40% 87%);
    --on-surface: hsl(24 40% 7%);
    --surface-container: hsl(24 40% 83%);

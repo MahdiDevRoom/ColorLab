@@ -1,5 +1,7 @@
 let toggleMenu = document.querySelector('#toggle-menu');
 let menu = document.querySelector('header .menu');
+let body = document.querySelector('body');
+let header = document.querySelector('header');
 let backdrop = document.querySelector('#backdrop');
 let toggleTheme = document.querySelector('#toggle-theme');
 let main = document.querySelector('main');
@@ -11,22 +13,35 @@ let changeTheme = (theme) => {
 }
 
 if (!storage) {
-   storage = {theme: 'light'};
-   localStorage.setItem('storage',JSON.stringify(storage));
+   storage = { theme: 'light' };
+   localStorage.setItem('storage', JSON.stringify(storage));
 }
 
 changeTheme(storage.theme);
 
-toggleMenu.onclick = backdrop.onclick = ()=> {
+toggleMenu.onclick = backdrop.onclick = () => {
    menu.classList.toggle('open');
    backdrop.classList.toggle('open');
    toggleMenu.querySelector('.symbol').innerHTML = menu.classList.contains('open') ? 'close' : 'menu';
 }
-   
 
-
-toggleTheme.onclick = ()=> {
-   storage = {theme: storage.theme == 'light' ? 'dark' : 'light' };
-   localStorage.setItem('storage',JSON.stringify(storage));
+toggleTheme.onclick = () => {
+   storage = { theme: storage.theme == 'light' ? 'dark' : 'light' };
+   localStorage.setItem('storage', JSON.stringify(storage));
    changeTheme(storage.theme);
+}
+
+body.onscroll = () => {
+   if (scrollY >= 128) {
+      if (!header.classList.contains('sticky')) header.classList.add('sticky');
+   } else {
+      if (header.classList.contains('sticky')) {
+         header.classList.remove('sticky');
+      }
+   }
+   if (menu.classList.contains('open')) {
+      menu.classList.toggle('open');
+      backdrop.classList.toggle('open');
+      toggleMenu.querySelector('.symbol').innerHTML = menu.classList.contains('open') ? 'close' : 'menu';
+   }
 }
