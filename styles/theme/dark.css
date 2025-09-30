@@ -1,50 +1,36 @@
 :root {
-   /*
-     بهترین پالت حالت شب (Standard Dark Mode)
-     Primary: Teal/Cyan (فیروزه‌ای/سبزآبی) - حس اعتماد و آرامش
-     Secondary: Orange/Amber (نارنجی/کهربایی) - برای تأکید و هشدار
-     Background: Charcoal/Navy (ذغالی متمایل به آبی) - ایجاد عمق
-   */
-   
-   /* Primary - فیروزه‌ای روشن و زنده */
-   --primary: hsl(240 50% 70%); /* رنگ روشن برای عناصر اصلی */
-   --on-primary: hsl(240 50% 10%); /* متن تیره روی Primary */
-   --primary-container: hsl(240 50% 30%); /* کانتینر فیروزه‌ای تیره */
-   --on-primary-container: hsl(240 50% 90%); /* متن روشن روی کانتینر */
-   
-   /* Secondary - نارنجی کهربایی برای تأکید (Accent) */
-   --secondary: hsl(30 50% 75%); 
-   --on-secondary: hsl(30 50% 10%);
-   --secondary-container: hsl(30 50% 35%);
-   --on-secondary-container: hsl(30 50% 90%);
-   
-   /* Tertiary - بنفش/صورتی ملایم */
-   --tertiary: hsl(320 60% 75%); 
-   --on-tertiary: hsl(320 60% 10%);
-   --tertiary-container: hsl(320 60% 30%);
-   --on-tertiary-container: hsl(320 60% 90%);
-   
-   /* Error - رنگ خطا (استاندارد) */
-   --error: hsl(0 50% 70%);
-   --on-error: hsl(0 50% 10%);
-   --error-container: hsl(0 50% 30%);
-   --on-error-container: hsl(0 50% 90%);
-
-   
-   /* Surface & Background - بهترین انتخاب برای Dark Mode (Charcoal/Navy) */
-   --background: hsl(240 10% 8%); /* بسیار تیره و کمی متمایل به آبی */
-   --on-background: hsl(240 10% 95%); 
-   
-   --surface: hsl(240 10% 12%); /* لایه اول (کارت‌ها) */
-   --on-surface: hsl(240 10% 98%); 
-   
-   --surface-container: hsl(240 10% 18%); /* لایه دوم (هدرها و کانتینرها) */
-   --on-surface-container: hsl(240 10% 99%);
-   
-   --surface-variant: hsl(240 10% 30%); /* برای فیلدها و خطوط */
-   --on-surface-variant: hsl(240 10% 80%);
-
-   /* Glassmorphism (شیشه‌ای) */
-   --primary-glass: hsl(240 50% 30% / 0.6); 
-   --surface-glass: hsl(240 10% 30% / 0.6); 
+  --primary: hsl(240 50% 70%);
+  --on-primary: hsl(240 50% 10%);
+  --primary-container: hsl(240 50% 30%);
+  --on-primary-container: hsl(240 50% 90%);
+  
+  --secondary: hsl(30 50% 70%);
+  --on-secondary: hsl(30 50% 10%);
+  --secondary-container: hsl(30 50% 35%);
+  --on-secondary-container: hsl(30 50% 90%);
+  
+  --tertiary: hsl(320 60% 70%);
+  --on-tertiary: hsl(320 60% 10%);
+  --tertiary-container: hsl(320 60% 30%);
+  --on-tertiary-container: hsl(320 60% 90%);
+  
+  --error: hsl(0 50% 70%);
+  --on-error: hsl(0 50% 10%);
+  --error-container: hsl(0 50% 30%);
+  --on-error-container: hsl(0 50% 90%);
+  
+  --background: hsl(240 10% 8%);
+  --on-background: hsl(240 10% 95%);
+  
+  --surface: hsl(240 10% 12%);
+  --on-surface: hsl(240 10% 98%);
+  
+  --surface-container: hsl(240 10% 18%);
+  --on-surface-container: hsl(240 10% 99%);
+  
+  --surface-variant: hsl(240 10% 30%);
+  --on-surface-variant: hsl(240 10% 80%);
+  
+  --primary-glass: hsl(240 50% 20% / 0.6);
+  --surface-glass: hsl(240 10% 20% / 0.6);
 }
