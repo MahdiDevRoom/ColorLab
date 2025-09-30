@@ -1,23 +1,50 @@
 :root {
+   /*
+     بهترین پالت حالت شب (Standard Dark Mode)
+     Primary: Teal/Cyan (فیروزه‌ای/سبزآبی) - حس اعتماد و آرامش
+     Secondary: Orange/Amber (نارنجی/کهربایی) - برای تأکید و هشدار
+     Background: Charcoal/Navy (ذغالی متمایل به آبی) - ایجاد عمق
+   */
    
-   --primary: hsl(220 100% 70%);
-   --on-primary: hsl(220 100% 10%);
-   --primary-container: hsl(220 100% 20%);
-   --on-primary-container: hsl(220 100% 90%);
+   /* Primary - فیروزه‌ای روشن و زنده */
+   --primary: hsl(240 50% 70%); /* رنگ روشن برای عناصر اصلی */
+   --on-primary: hsl(240 50% 10%); /* متن تیره روی Primary */
+   --primary-container: hsl(240 50% 30%); /* کانتینر فیروزه‌ای تیره */
+   --on-primary-container: hsl(240 50% 90%); /* متن روشن روی کانتینر */
    
-   --secondary: hsl(300 60% 70%);
-   --on-secondary: hsl(300 60% 20%);
-   --secondary-container: hsl(300 60% 20%);
-   --on-secondary-container: hsl(300 60% 90%);
+   /* Secondary - نارنجی کهربایی برای تأکید (Accent) */
+   --secondary: hsl(30 50% 75%); 
+   --on-secondary: hsl(30 50% 10%);
+   --secondary-container: hsl(30 50% 35%);
+   --on-secondary-container: hsl(30 50% 90%);
    
-   --background: hsl(220 40% 7%);
-   --on-background: hsl(220 40% 87%);
-   --surface: hsl(220 40% 10%);
-   --on-surface: hsl(220 60% 93%);
-   --surface-container: hsl(220 40% 15%);
-   --on-surface-container: hsl(220 60% 98%);
-   --surface-variant: hsl(220 60% 20%);
-   --on-surface-variant: hsl(220 40% 90%);
-   --primary-glass: hsl(220 100% 30% / 0.4);
-   --surface-glass: hsl(220 40% 30% / 0.4);
+   /* Tertiary - بنفش/صورتی ملایم */
+   --tertiary: hsl(320 60% 75%); 
+   --on-tertiary: hsl(320 60% 10%);
+   --tertiary-container: hsl(320 60% 30%);
+   --on-tertiary-container: hsl(320 60% 90%);
+   
+   /* Error - رنگ خطا (استاندارد) */
+   --error: hsl(0 50% 70%);
+   --on-error: hsl(0 50% 10%);
+   --error-container: hsl(0 50% 30%);
+   --on-error-container: hsl(0 50% 90%);
+
+   
+   /* Surface & Background - بهترین انتخاب برای Dark Mode (Charcoal/Navy) */
+   --background: hsl(240 10% 8%); /* بسیار تیره و کمی متمایل به آبی */
+   --on-background: hsl(240 10% 95%); 
+   
+   --surface: hsl(240 10% 12%); /* لایه اول (کارت‌ها) */
+   --on-surface: hsl(240 10% 98%); 
+   
+   --surface-container: hsl(240 10% 18%); /* لایه دوم (هدرها و کانتینرها) */
+   --on-surface-container: hsl(240 10% 99%);
+   
+   --surface-variant: hsl(240 10% 30%); /* برای فیلدها و خطوط */
+   --on-surface-variant: hsl(240 10% 80%);
+
+   /* Glassmorphism (شیشه‌ای) */
+   --primary-glass: hsl(240 50% 30% / 0.6); 
+   --surface-glass: hsl(240 10% 30% / 0.6); 
 }

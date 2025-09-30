@@ -1,5 +1,5 @@
 main {
-   margin-top: 86px;
+   margin-top: 102px;
    &>* {
       background: var(--background);
       color: var(--on-background);
@@ -22,41 +22,42 @@ main {
          flex-direction: row;
       }
       
-      .logo {
+      &>.logo {
          position: relative;
          border-radius: 24px;
          background: var(--background);
          color: var(--on-background);
          padding: 24px;
          display: flex;
+         gap: 16px;
          flex-direction: column;
          justify-content: center;
          align-items: stretch;
+         overflow: hidden;
          transition: 0.3s;
          
-         .svg {
-            .bg {
-               fill: var(--primary);
-            }
-            
-            .fill {
-               fill: var(--on-primary);
-               stroke: var(--on-primary);
-            }
-            
-            .stroke {
-               stroke: var(--on-primary);
-            }
+         &>.svg {
+            z-index: 1;
          }
          
-         .title {
+         &>.title {
             font-weight: 1000;
             font-stretch: 20%;
-            font-size: 22px;
+            font-size: 36px;
             text-align: center;
+            z-index: 1;
          }
          
-         .version {
+         &>.sub-title {
+            font-weight: 1000;
+            font-stretch: 20%;
+            font-size: 18px;
+            text-align: center;
+            opacity: 0.8;
+            z-index: 1;
+         }
+         
+         &>.version {
             position: absolute;
             background: var(--surface-variant);
             color: var(--on-surface-variant);
@@ -65,6 +66,33 @@ main {
             font-weight: 700;
             top: 16px;
             right: 16px;
+            z-index: 1;
+         }
+         
+         &>.bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            svg {
+               fill:  var(--surface-container);
+               position: absolute;
+               width: 500px;
+               top: -200px;
+               left: -200px;
+            }
+            div {
+               border: solid 5px var(--surface-container);
+               position: absolute;
+               width: 250px;
+               aspect-ratio: 1;
+               bottom: -100px;
+               right: -50px;
+               border-radius: 200px;
+               z-index: 5;
+            }
          }
       }
       

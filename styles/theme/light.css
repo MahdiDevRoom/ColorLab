@@ -10,6 +10,17 @@
    --secondary-container: hsl(128 60% 80%);
    --on-secondary-container: hsl(128 60% 10%);
    
+   --tertiary: hsl(50 60% 20%);
+   --on-tertiary: hsl(50 60% 95%);
+   --tertiary-container: hsl(50 60% 80%);
+   --on-tertiary-container: hsl(50 60% 10%);
+   
+   --error: hsl(18 100% 20%);
+   --on-error: hsl(18 100% 95%);
+   --error-container: hsl(18 100% 80%);
+   --on-error-container: hsl(18 100% 10%);
+
+   
    --background: hsl(24 40% 92%);
    --on-background: hsl(24 40% 30%);
    --surface: hsl(24 40% 87%);

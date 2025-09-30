@@ -33,10 +33,16 @@
    
    <!-- Styles -->
    <link id="theme-color" rel="stylesheet" href="styles/theme/light.css">
+   <link rel="stylesheet" href="styles/theme/codeview.css">
    <link rel="stylesheet/less" type="text/css" href="styles/style.less">
    
    <!-- Scripts -->
    <script src="scripts/less.js"></script>
+   <script src="scripts/highlight.js"></script>
+   <script src="scripts/lang/xml.js"></script>
+   <script src="scripts/lang/javascript.js"></script>
+   <script src="scripts/lang/json.js"></script>
+   
 </head>
 
 <body>
@@ -102,10 +108,13 @@
                   </g>
                </svg>
             </div>
-            <div class="title">
-               <h1>ColorLab.js</h1>
-            </div>
+            <div class="title"> ColorLab.js</div>
+            <div class="sub-title"> A Powerful Color Utility Library</div>
             <div class="version"> v1.0.0 </div>
+            <div class="bg">
+               <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg"><path d="M439.5,299.5Q403,359,352,393Q301,427,244,414.5Q187,402,151.5,366Q116,330,64,285Q12,240,62.5,194Q113,148,141.5,87Q170,26,237,35Q304,44,364,75Q424,106,450,173Q476,240,439.5,299.5Z" /></svg>
+               <div></div>
+            </div>
          </div>
          <ul class="option">
             <li>
@@ -139,17 +148,29 @@
             <path fill="none" stroke="currentColor" stroke-width="30" stroke-linejoin="round" stroke-linecap="round" d="M 0,50 C 50,0 100,0 150,50 S 250,100 300,50 S 400,0 450,50 S 550,100 600,50 S 700,0 750,50 S 850,100 900,50 S 1000,0 1050,50 S 1150,100 1200,50 S 1300,0 1350,50 S 1450,100 1500,50 S 1600,0 1650,50 S 1750,100 1800,50"/>
          </svg>
       </div>
+      
       <div>
          <section>
-            <h2 class="c-title">
-               <div class="textview">ColorLab.js</div>
+            <h1 class="c-title">
+               <div class="text-view">ColorLab.js</div>
                <div class="sub-title">A Powerful Color Utility Library</div>
-            </h2>
+            </h1>
             <p>
                A modern, lightweight JavaScript library for advanced color manipulation and conversion in web projects.
             </p>
-            <h3 class="c-title">Key Features:</h3>
-            
+            <h2 class="c-title">
+               <div class="text-view">setup and use</div>
+            </h2>
+            <pre class="hljs"><code class="language-html">
+&lt;script src="path/to/ColorLab.js">&lt;/script>
+            </code></pre>
+            <pre class="hljs"><code class="language-js">
+let C = new ColorLab();
+console.log(C.toHex('red')); // #FF0000
+            </code></pre>
+            <h2 class="c-title">
+               <div class="text-view">Key Features:</div>
+            </h2>
             <ul>
                <li>Convert between all color formats: HEX, RGB, HSL, HSV, CMYK</li>
                <li>Automatic color format detection</li>
@@ -166,6 +187,7 @@
    
    <!-- Scripts -->
    <script src="scripts/main.js"></script>
+   <script> hljs.highlightAll() </script>
 </body>
 
 </html>
