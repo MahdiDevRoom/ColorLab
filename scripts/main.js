@@ -1,5 +1,5 @@
 let toggleMenu = document.querySelector('#toggle-menu');
-let menu = document.querySelector('header .menu');
+let navbar = document.querySelector('header .navbar');
 let body = document.querySelector('body');
 let header = document.querySelector('header');
 let backdrop = document.querySelector('#backdrop');
@@ -20,9 +20,9 @@ if (!storage) {
 changeTheme(storage.theme);
 
 toggleMenu.onclick = backdrop.onclick = () => {
-   menu.classList.toggle('open');
+   navbar.classList.toggle('open');
    backdrop.classList.toggle('open');
-   toggleMenu.querySelector('.symbol').innerHTML = menu.classList.contains('open') ? 'close' : 'menu';
+   toggleMenu.querySelector('.symbol').innerHTML = navbar.classList.contains('open') ? 'close' : 'menu';
 }
 
 toggleTheme.onclick = () => {
@@ -39,9 +39,9 @@ body.onscroll = () => {
          header.classList.remove('sticky');
       }
    }
-   if (menu.classList.contains('open')) {
-      menu.classList.toggle('open');
+   if (navbar.classList.contains('open')) {
+      navbar.classList.toggle('open');
       backdrop.classList.toggle('open');
-      toggleMenu.querySelector('.symbol').innerHTML = menu.classList.contains('open') ? 'close' : 'menu';
+      toggleMenu.querySelector('.symbol').innerHTML = navbar.classList.contains('open') ? 'close' : 'menu';
    }
 }
