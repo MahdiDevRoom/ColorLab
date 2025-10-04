@@ -1,6 +1,7 @@
 header {
    
    width: 100%;
+   height: auto;
    padding: 32px;
    user-select: none;
    position: fixed;
@@ -81,6 +82,7 @@ header {
       z-index: 10;
       opacity: 0;
       transition: 0.3s;
+      overflow: hidden;
       
       &>* {
          all: unset;
@@ -97,7 +99,7 @@ header {
          border-radius: 4px;
          transition: 0.3s;
          
-         &:not(a){
+         &:not(a) {
             background: var(--surface-variant);
             color: var(--on-surface-variant);
             border-radius: 22px;
@@ -156,11 +158,77 @@ header {
       }
    }
    
+   /* Sidebar */
+   .sidebar {
+      display: none !important;
+      background: var(--background);
+      color: var(--on-background);
+      height: 100%;
+      width: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      border-radius: 28px;
+      box-shadow: 0 5px 20px var(--surface-glass);
+      transition: 0.3s;
+      
+      &>* {
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         align-items: center;
+         gap: 8px;
+         padding: 8px;
+         
+         &>* {
+            &:is(a) {
+               all: unset;
+               box-sizing: border-box;
+               width: 100%;
+               aspect-ratio: 1;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               border-radius: 20px;
+               transition: 0.3s;
+               cursor: pointer;
+            }
+            
+            width: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            transition: 0.3s;
+            cursor: pointer;
+            
+            .icon {
+               padding: 8px;
+               width: 100%;
+               aspect-ratio: 1;
+            }
+            
+            &:hover {
+               background: var(--surface);
+               color: var(--on-surface);
+               
+               &:active {
+                  scale: 0.9;
+                  opacity: 0.5;
+               }
+            }
+         }
+      }
+   }
+   
    /* Sticky */
    &.sticky {
       padding: 0;
       
-      .appbar{
+      .appbar,
+      .sidebar {
          border-radius: 0;
       }
       
@@ -169,11 +237,19 @@ header {
          left: 0;
          width: 100%;
          border-radius: 0 0 24px 24px;
-         
       }
       
    }
    
    /* Desktop */
-   @media (min-width: 420px) {}
+   @media (min-width: 420px) {
+      .navbar {
+         flex-direction: row;
+         flex-wrap: wrap;
+         &>* {
+            flex-grow: 1;
+            border-radius: 23px!important;
+         }
+      }
+   }
 }

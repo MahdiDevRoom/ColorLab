@@ -1,15 +1,13 @@
-let toggleMenu = document.querySelector('#toggle-menu');
 let navbar = document.querySelector('header .navbar');
 let body = document.querySelector('body');
 let header = document.querySelector('header');
 let backdrop = document.querySelector('#backdrop');
-let toggleTheme = document.querySelector('#toggle-theme');
 let main = document.querySelector('main');
 let themeColor = document.querySelector('#theme-color');
 let storage = JSON.parse(localStorage.getItem('storage'));
 let changeTheme = (theme) => {
    themeColor.href = `styles/theme/${theme}.css`;
-   toggleTheme.querySelector('.symbol').innerHTML = `${theme == 'light' ? 'dark' : 'light'}_mode`;
+   document.querySelectorAll('.theme-symbol').forEach((i)=> i.innerHTML = `${theme == 'light' ? 'dark' : 'light'}_mode`);
 }
 
 if (!storage) {
@@ -19,17 +17,19 @@ if (!storage) {
 
 changeTheme(storage.theme);
 
-toggleMenu.onclick = backdrop.onclick = () => {
+function ToggleMenu() {
    navbar.classList.toggle('open');
    backdrop.classList.toggle('open');
-   toggleMenu.querySelector('.symbol').innerHTML = navbar.classList.contains('open') ? 'close' : 'menu';
+   document.querySelectorAll('.menu-symbol').forEach((i)=> i.innerHTML = navbar.classList.contains('open') ? 'close' : 'menu');
 }
 
-toggleTheme.onclick = () => {
+function ToggleTheme() {
    storage = { theme: storage.theme == 'light' ? 'dark' : 'light' };
    localStorage.setItem('storage', JSON.stringify(storage));
    changeTheme(storage.theme);
 }
+
+backdrop.onclick = ()=> ToggleMenu();
 
 body.onscroll = () => {
    if (scrollY >= 128) {
@@ -40,8 +40,6 @@ body.onscroll = () => {
       }
    }
    if (navbar.classList.contains('open')) {
-      navbar.classList.toggle('open');
-      backdrop.classList.toggle('open');
-      toggleMenu.querySelector('.symbol').innerHTML = navbar.classList.contains('open') ? 'close' : 'menu';
+      ToggleMenu();
    }
 }
