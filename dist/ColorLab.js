@@ -1,4 +1,4 @@
-// ColorLab.js v1
+// ColorLab.js v1.0.0
 class ColorLab {
    //-------------------
    // private variables 

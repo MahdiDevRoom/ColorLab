@@ -19,6 +19,6 @@ ColorLab.js is designed as a standalone class. Simply include the file in your p
 ``` JavaScript 
 // Use in Your JavaScript file
 const colorLab = new ColorLab();
-colorlab.toHex('0');
+colorlab.toHex('Blue Violet'); // #8A2BE2
 
 ```
