@@ -9,7 +9,7 @@ class ColorLab {
    // constructor
    //------------
    constructor() {
-      this.version = '2.2.3';
+      this.version = '1.0.0';
       this.#COLORS_MAP = new Map(
          Object.entries(this.#COLORS).map(([k, v]) => [this.#trimCase(k), v])
       );
@@ -817,13 +817,13 @@ class ColorLab {
       return this.getChannels(this.#T.to.hsl(str));
    }
    toHsv(str) {
-      return this.getChannels(this.#T.to.hsv(str));
+      return this.#T.to.hsv(str);
    }
    toHsvChannels(str) {
       return this.getChannels(this.#T.to.hsv(str));
    }
    toCmyk(str) {
-      return this.getChannels(this.#T.to.cmyk(str));
+      return this.#T.to.cmyk(str);
    }
    toCmykChannels(str) {
       return this.getChannels(this.#T.to.cmyk(str));
