@@ -1,0 +1,172 @@
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background: var(--background);
+    color: var(--on-background);
+    border-radius: 0 32px 32px 0;
+    display: block;
+    overflow: hidden auto;
+    z-index: 10;
+    translate: -100% 0;
+    transition: 0.3s;
+
+    &>.header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        height: 80px;
+        position: sticky;
+        top: 0;
+        background: var(--background);
+        z-index: 2;
+        transition: 0.3s;
+
+        &::after {
+            content: "";
+            display: block;
+            width: calc(100% - 32px);
+            height: 2px;
+            border-radius: 2px;
+            background: var(--surface-container);
+            position: absolute;
+
+            bottom: 0px;
+            left: 16px;
+            transition: 0.3s;
+        }
+
+        .title {
+            font-size: 24px;
+            position: relative;
+            padding-inline: 16px;
+            transition: 0.3s;
+
+            &::before {
+                content: "";
+                display: block;
+                width: 6px;
+                height: 100%;
+                border-radius: 3px;
+                background: var(--scondary);
+                position: absolute;
+                left: 4px;
+                transition: 0.3s;
+            }
+        }
+
+        &>.icons {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            height: 100%;
+
+            &>* {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                aspect-ratio: 1;
+                height: 100%;
+                border-radius: 24px;
+                cursor: pointer;
+                transition: 0.3s;
+                font-size: 32px;
+
+                &:hover {
+                    background: var(--surface);
+                }
+
+                &:active {
+                    opacity: 0.5;
+                    scale: 0.9;
+                }
+            }
+        }
+    }
+
+    &>.body {
+        padding: 16px;
+
+        &>.title {
+            color: var(--primary);
+            font-size: 18px;
+            padding: 8px;
+            font-variation-settings:
+                "GRAD"48,
+                "ROND"0,
+                "opsz"0,
+                "slnt"0,
+                "wdth"20,
+                "wght"700;
+        }
+
+        &>.list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            &>*:first-child {
+                border-top-left-radius: 24px;
+                border-top-right-radius: 24px;
+            }
+
+            &>*:last-child {
+                border-bottom-left-radius: 24px;
+                border-bottom-right-radius: 24px;
+            }
+
+            &>* {
+                background: var(--surface);
+                border-radius: 4px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px;
+                transition: 0.3s;
+
+                &.active {
+                    border-left: 5px solid var(--primary);
+
+                    .symbol {
+                        font-variation-settings:
+                            "FILL"1,
+                            "wght"300,
+                            "GRAD"0,
+                            "opsz"24;
+                    }
+                }
+
+                &>.icons svg {
+                    height: 28px;
+                }
+
+                &:hover {
+                    background: var(--surface-container);
+                    color: var(--onsurface-container);
+                }
+
+                &:active {
+                    border-radius: 24px;
+                    opacity: 0.5;
+                    scale: 0.9;
+                }
+            }
+        }
+    }
+
+    &>.footer {
+        text-align: center;
+        opacity: 0.5;
+        padding: 16px;
+    }
+
+    &.show {
+        translate: 0 0;
+    }
+
+}

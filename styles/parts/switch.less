@@ -1,0 +1,35 @@
+input.c-switch{
+    all: unset;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    width: 46px;
+    height: 26px;
+    background: var(--surface-container);
+    border: 2px solid var(--outline);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    &::after{
+        content: "";
+        display: block;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        background: var(--on-surface-container);
+        aspect-ratio: 1;
+        width: 22px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+    &:checked{
+        background: var(--primary);
+        border: 2px solid var(--primary);
+        &::after{
+            background: var(--on-primary);
+            top: 0px;
+            left: 20px;
+            width: 26px;
+        }
+    }
+}
