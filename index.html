@@ -20,7 +20,7 @@
     <header>
         <div class="title" onclick="location.reload()"> ColoeLab.js </div>
         <div class="icons">
-            <div onclick="Menu()" class="symbol"> menu </div>
+            <div onclick="Menu.open()" class="symbol"> menu </div>
         </div>
     </header>
 
@@ -32,7 +32,7 @@
         <div class="header">
             <div class="title">ColorLab.js</div>
             <div class="icons">
-                <div onclick="Menu()" class="symbol"> close </div>
+                <div onclick="Menu.close()" class="symbol"> close </div>
             </div>
         </div>
         <div class="body">
@@ -41,32 +41,32 @@
                 <label>
                     <div class="text"> Toggle Theme </div>
                     <div>
-                        <input id="themeSwitch" oninput="Theme()" class="c-switch" type="checkbox" id="themeVal">
+                        <input id="themeSwitch" class="c-switch" type="checkbox" id="themeVal">
                     </div>
                 </label>
             </div>
             <br>
             <div class="title"> Navigation </div>
-            <div class="list">
-                <div class="active">
+            <div id="navigation" class="list">
+                <div onclick="Page.open('home')">
                     <div class="text">Home</div>
                     <div class="icon">
                         <div class="symbol">home</div>
                     </div>
                 </div>
-                <div>
+                <div onclick="Page.open('lab')">
                     <div class="text">Laboratory</div>
                     <div class="icon">
                         <div class="symbol">labs</div>
                     </div>
                 </div>
-                <div>
+                <div onclick="Page.open('docs')">
                     <div class="text">Documents</div>
                     <div class="icon">
                         <div class="symbol">Docs</div>
                     </div>
                 </div>
-                <div>
+                <div onclick="Page.open('changelog')">
                     <div class="text">Changelog</div>
                     <div class="icon">
                         <div class="symbol">list_alt_check</div>
@@ -107,7 +107,8 @@
         </div>
     </div>
 
-    <!-- Pages -->
+    <!-- Main -->
+    <main style="padding-top: 90px;"></main>
 
     <!-- Footer -->
 

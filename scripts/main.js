@@ -1,50 +1,117 @@
-const html = document.documentElement;
-const themeSwitch = document.querySelector('#themeSwitch');
-const menuElm = document.querySelector('#menu');
-const backdropElm = document.querySelector('#backdrop');
+const Theme = {
+    html: document.documentElement,
+    switchElm: document.querySelector('#themeSwitch'),
 
-let localTheme = localStorage.getItem('theme');
-if (!localTheme) {
-    localTheme = 'light';
-    localStorage.setItem('theme',localTheme);
+    init() {
+        let savedTheme = localStorage.getItem('theme');
+        if (!savedTheme) {
+            savedTheme = 'light';
+            localStorage.setItem('theme', savedTheme);
+        }
+        this.set(savedTheme);
+
+        this.switchElm.checked = savedTheme === 'dark';
+        this.switchElm.addEventListener('change', () => this.toggle());
+    },
+
+    current() {
+        return this.html.getAttribute('theme');
+    },
+
+    set(name) {
+        this.html.setAttribute('theme', name);
+        localStorage.setItem('theme', name);
+        this.switchElm.checked = name === 'dark';
+    },
+
+    toggle() {
+        const newTheme = this.current() === 'light' ? 'dark' : 'light';
+        this.set(newTheme);
+    },
+
+};
+const Menu = {
+    menuElm: document.querySelector('#menu'),
+    backdropElm: document.querySelector('#backdrop'),
+    body: document.body,
+
+    init() {
+        this.backdropElm.onclick = () => this.close();
+        this.body.onscroll = () => this.close();
+    },
+
+    isOpen() {
+        return this.menuElm.classList.contains('show');
+    },
+    open() {
+        if (this.isOpen()) return;
+        this.menuElm.classList.add('show');
+        this.backdropElm.classList.add('show');
+    },
+    close() {
+        if (!this.isOpen()) return;
+        this.menuElm.classList.remove('show');
+        this.backdropElm.classList.remove('show');
+    },
+    toggle() {
+        this.isOpen() ? this.close() : this.open();
+    }
+};
+const Page = {
+    main: document.querySelector('main'),
+
+    parseInput(input) {
+        const index = input.indexOf('-');
+        if (index === -1) return [input, ''];
+        return [input.slice(0, index), input.slice(index + 1)];
+    },
+
+    setActiveMenu(input) {
+        const listItems = document.querySelectorAll("#navigation > div");
+        listItems.forEach(item => {
+            const onclickValue = item.getAttribute("onclick");
+            const pageName = onclickValue?.match(/Page.open\('(.+)'\)/)?.[1];
+            if (pageName === input) item.classList.add("active");
+            else item.classList.remove("active");
+        });
+        Menu.close();
+    },
+
+     open(input, addHistory = true) {
+        let [name, section] = this.parseInput(input);
+
+        fetch(`./pages/${name}.html`)
+            .then(res => res.text())
+            .then(data => {
+                this.main.innerHTML = data;
+                if (section) {
+                    queueMicrotask(() => {
+                        const elm = document.getElementById(section);
+                        if (elm) elm.scrollIntoView({ behavior: "smooth" });
+                    });
+                }
+                this.setActiveMenu(input);
+                if (addHistory) history.pushState({ page: input }, "", `#${input}`);
+            })
+    },
+
+
+    init() {
+        window.addEventListener("DOMContentLoaded", () => {
+            let hash = location.hash.slice(1);
+            if (!hash) location.hash = hash = "home";
+            this.open(hash, false);
+        });
+
+        window.addEventListener("hashchange", () => this.open(location.hash.slice(1), false));
+        window.addEventListener("popstate", (event) => {
+            const hash = event.state?.page || "home";
+            this.open(hash, false);
+        });
+    }
 }
 
-html.setAttribute('theme', localTheme);
-themeSwitch.checked = localTheme == 'dark';
+Theme.init();
+Menu.init();
+Page.init();
 
-
-function Menu() {
-    let isOpen = menuElm.classList.contains('show');
-
-    let open = () => {
-        menuElm.classList.add('show');
-        backdropElm.classList.add('show');
-        isOpen = true;
-    }
-
-    let close = () => {
-        menuElm.classList.remove('show');
-        backdropElm.classList.remove('show');
-        isOpen = false;
-    }
-
-    isOpen ? close() : open();
-
-    backdropElm.onclick = () => {
-        if (isOpen) close();
-    }
-
-    html.onselectstart = () => {
-        if (isOpen) close();
-    }
-}
-
-function Theme() {
-    let currentTheme = html.getAttribute('theme');
-    let newTheme = currentTheme == 'light' ? 'dark' : 'light';
-
-    html.setAttribute('theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    themeSwitch.checked = newTheme == 'dark';
-
-}
