@@ -6,11 +6,11 @@ const backdropElm = document.querySelector('#backdrop');
 let localTheme = localStorage.getItem('theme');
 if (!localTheme) {
     localTheme = 'light';
-    localStorage.setItem(localTheme);
+    localStorage.setItem('theme',localTheme);
 }
 
 html.setAttribute('theme', localTheme);
-themeSwitch.checked = localTheme == 'dark'
+themeSwitch.checked = localTheme == 'dark';
 
 
 function Menu() {
