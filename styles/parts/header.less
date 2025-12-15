@@ -14,14 +14,14 @@ header {
     justify-content: space-between;
     align-items: center;
     transition: 0.3s;
+    z-index: 2;
 
     &>.title{
         font-size: 24px;
         padding-inline: 16px;
         cursor: pointer;
     }
-
-    &>.icons{
+    &>.icon{
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -47,5 +47,12 @@ header {
                 scale: 0.9;
             }
         }
+    }
+
+    &.sticky {
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 0;
     }
 }

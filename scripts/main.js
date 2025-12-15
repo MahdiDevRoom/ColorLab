@@ -58,7 +58,7 @@ const Menu = {
     }
 };
 const Page = {
-    main: document.querySelector('main'),
+    pageElm: document.querySelector('#page'),
 
     parseInput(input) {
         const index = input.indexOf('-');
@@ -83,16 +83,16 @@ const Page = {
         fetch(`./pages/${name}.html`)
             .then(res => res.text())
             .then(data => {
-                this.main.innerHTML = data;
+                this.pageElm.innerHTML = data;
                 if (section) {
                     queueMicrotask(() => {
                         const elm = document.getElementById(section);
                         if (elm) elm.scrollIntoView({ behavior: "smooth" });
                     });
                 }
-                this.setActiveMenu(input);
                 if (addHistory) history.pushState({ page: input }, "", `#${input}`);
             })
+            this.setActiveMenu(input);
     },
 
 
@@ -110,8 +110,27 @@ const Page = {
         });
     }
 }
+const Appbar = {
+    header: document.querySelector('header'),
+    body: document.body,
+    init(){
+        this.body.onscroll = () => this.scroll();
+    },
+    isSticky(){
+        return this.header.classList.contains('sticky');
+    },
+    stick(){
+        if (this.isSticky) this.header.classList.add('sticky')
+    },
+    unStick(){
+        if (this.isSticky) this.header.classList.remove('sticky')
+    },
+    scroll(){
+        scrollY >= 100 ? this.stick() : this.unStick();
+    }
+}
 
 Theme.init();
 Menu.init();
 Page.init();
-
+Appbar.init();
