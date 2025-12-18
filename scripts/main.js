@@ -84,6 +84,7 @@ const Page = {
             .then(res => res.text())
             .then(data => {
                 this.pageElm.innerHTML = data;
+                alert(data)
                 if (section) {
                     queueMicrotask(() => {
                         const elm = document.getElementById(section);
