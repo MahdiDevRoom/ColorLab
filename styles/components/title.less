@@ -1,0 +1,26 @@
+.c-title{
+    position: relative;
+    padding-left: 0.6em;
+
+    &>.title{
+        font-size: 1em;
+        font-weight: 900;
+    }
+    &>.subtitle{
+        opacity: 0.7;
+        font-size: 0.7em;
+    }
+
+    &::before{
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -0.1em;
+        width: 0.3em;
+        height: 100%;
+        background: var(--scondary);
+        border-radius: 1em;
+    }
+
+}
