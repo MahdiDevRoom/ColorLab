@@ -1,0 +1,19 @@
+.c-underline{
+    all: unset;
+    display: inline;
+    position: relative;
+    z-index: 0;
+
+    &::after{
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--surface-variant);
+        bottom: 0;
+        left: 0;
+        border-radius: 2px;
+        z-index: -1;
+    }
+}
