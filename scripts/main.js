@@ -19,10 +19,10 @@ const Theme = {
     },
 
     set(name) {
-        freeze(undefined,{
+        freeze(undefined, {
             '.c-switch': 'left, width, height',
             '#menu label': 'scale',
-            
+
         });
         this.html.setAttribute('theme', name);
         localStorage.setItem('theme', name);
@@ -41,7 +41,7 @@ const Menu = {
 
     init() {
         this.backdropElm.onclick = () => this.close();
-        window.addEventListener('scroll', ()=> this.close());
+        window.addEventListener('scroll', () => this.close());
     },
 
     isOpen() {
@@ -81,22 +81,24 @@ const Page = {
         Menu.close();
     },
 
-     open(input, addHistory = true) {
+    open(input, addHistory = true) {
         let [name, section] = this.parseInput(input);
 
         fetch(`./pages/${name}.html`)
             .then(res => res.text())
             .then(data => {
                 this.pageElm.innerHTML = data;
+                hljs.highlightAll();
                 if (section) {
                     queueMicrotask(() => {
                         const elm = document.getElementById(section);
                         if (elm) elm.scrollIntoView({ behavior: "smooth" });
+
                     });
                 }
                 if (addHistory) history.pushState({ page: input }, "", `#${input}`);
             })
-            this.setActiveMenu(input);
+        this.setActiveMenu(input);
     },
 
 
@@ -117,19 +119,19 @@ const Page = {
 const Appbar = {
     header: document.querySelector('header'),
     body: document.body,
-    init(){
+    init() {
         this.body.onscroll = () => this.scroll();
     },
-    isSticky(){
+    isSticky() {
         return this.header.classList.contains('sticky');
     },
-    stick(){
+    stick() {
         if (this.isSticky) this.header.classList.add('sticky')
     },
-    unStick(){
+    unStick() {
         if (this.isSticky) this.header.classList.remove('sticky')
     },
-    scroll(){
+    scroll() {
         scrollY >= 100 ? this.stick() : this.unStick();
     }
 }
