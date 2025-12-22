@@ -19,6 +19,11 @@ const Theme = {
     },
 
     set(name) {
+        freeze(undefined,{
+            '.c-switch': 'left, width, height',
+            '#menu label': 'scale',
+            
+        });
         this.html.setAttribute('theme', name);
         localStorage.setItem('theme', name);
         this.switchElm.checked = name === 'dark';
@@ -33,11 +38,10 @@ const Theme = {
 const Menu = {
     menuElm: document.querySelector('#menu'),
     backdropElm: document.querySelector('#backdrop'),
-    body: document.body,
 
     init() {
         this.backdropElm.onclick = () => this.close();
-        this.body.onscroll = () => this.close();
+        window.addEventListener('scroll', ()=> this.close());
     },
 
     isOpen() {
@@ -129,6 +133,41 @@ const Appbar = {
         scrollY >= 100 ? this.stick() : this.unStick();
     }
 }
+
+function freeze(duration = 100, exceptions = {}) {
+    const css = document.createElement("style");
+    const selectors = Object.keys(exceptions);
+    const notClause = selectors.length > 0 ? `:not(${selectors.join(', ')})` : "";
+    let exceptionRules = "";
+    for (const [selector, properties] of Object.entries(exceptions)) {
+        exceptionRules += `
+            ${selector} {
+                transition-property: ${properties} !important;
+                transition-duration: inherit !important; 
+                transition-timing-function: inherit !important;
+                animation: inherit !important; 
+            }
+        `;
+    }
+
+    css.innerText = `
+        *${notClause}, *${notClause}::before, *${notClause}::after {
+            transition: none !important;
+            animation: none !important;
+        }
+        
+        ${exceptionRules}
+    `;
+
+    document.head.appendChild(css);
+    window.getComputedStyle(css).opacity;
+    setTimeout(() => {
+        if (document.head.contains(css)) {
+            document.head.removeChild(css);
+        }
+    }, duration);
+}
+
 
 Theme.init();
 Menu.init();
