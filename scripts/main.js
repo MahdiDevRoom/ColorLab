@@ -143,11 +143,37 @@ const Appbar = {
         scrollY >= 100 ? this.stick() : this.unStick();
     }
 }
-const ColorTools = {
+const Lab = {
     init() {
-        this.preview = document.querySelector('.color-preview');
-        this.input = document.querySelector('.color-input');
-        this.preview.innerHTML = 'dkuwkhwkqdkjwd';
+        this.c = new ColorLab();
+        this.previewElm = document.querySelector('#convert .color-preview');
+        this.inputElm = document.querySelector('#convert .color-input');
+
+        this.keywordElm = document.querySelector('#convert .keyword');
+        this.hexElm = document.querySelector('#convert .hex');
+        this.rgbElm = document.querySelector('#convert .rgb');
+        this.hslElm = document.querySelector('#convert .hsl');
+        this.hsvElm = document.querySelector('#convert .hsv');
+        this.cmykElm = document.querySelector('#convert .cmyk');
+
+        this.inputElm.oninput = () => this.input(this.inputElm.value);
+        this.input(this.c.randomColor());
+    },
+
+    input(color) {
+        this.preview(color);
+        this.inputElm.value = color;
+
+        this.keywordElm.innerHTML = this.c.getNearestColor(color);
+        this.hexElm.innerHTML = this.c.toHex(color);
+        this.rgbElm.innerHTML = this.c.toRgb(color);
+        this.hslElm.innerHTML = this.c.toHsl(color);
+        this.hsvElm.innerHTML = this.c.toHsv(color);
+        this.cmykElm.innerHTML = this.c.toCmyk(color);
+    },
+
+    preview(color) {
+        this.previewElm.style.background = this.c.toHex(color);
     }
 }
 function freeze(duration = 100, exceptions = {}) {
@@ -193,17 +219,12 @@ Appbar.init();
 
 Page.onloadpage = ({ detail }) => {
     let page = detail.page;
-
-    if (page == 'home') {
-
-    }
-
     switch (page) {
         case 'home':
             hljs.highlightAll();
             break;
         case 'lab':
-            ColorTools.init();
+            Lab.init();
             break;
     }
 }
