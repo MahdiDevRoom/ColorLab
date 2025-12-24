@@ -63,6 +63,7 @@ const Menu = {
 };
 const Page = {
     pageElm: document.querySelector('#page'),
+    target: new EventTarget(),
 
     parseInput(input) {
         const index = input.indexOf('-');
@@ -88,7 +89,7 @@ const Page = {
             .then(res => res.text())
             .then(data => {
                 this.pageElm.innerHTML = data;
-                hljs.highlightAll();
+                this.dispatchEvent({ page: name });
                 if (section) {
                     queueMicrotask(() => {
                         const elm = document.getElementById(section);
@@ -101,6 +102,13 @@ const Page = {
         this.setActiveMenu(input);
     },
 
+    dispatchEvent(detail) {
+        this.target.dispatchEvent(new CustomEvent('loadPage', { detail }));
+    },
+
+    set onloadpage(callback) {
+        this.target.addEventListener('loadPage', callback);
+    },
 
     init() {
         window.addEventListener("DOMContentLoaded", () => {
@@ -135,7 +143,13 @@ const Appbar = {
         scrollY >= 100 ? this.stick() : this.unStick();
     }
 }
-
+const ColorTools = {
+    init() {
+        this.preview = document.querySelector('.color-preview');
+        this.input = document.querySelector('.color-input');
+        this.preview.innerHTML = 'dkuwkhwkqdkjwd';
+    }
+}
 function freeze(duration = 100, exceptions = {}) {
     const css = document.createElement("style");
     const selectors = Object.keys(exceptions);
@@ -175,3 +189,21 @@ Theme.init();
 Menu.init();
 Page.init();
 Appbar.init();
+
+
+Page.onloadpage = ({ detail }) => {
+    let page = detail.page;
+
+    if (page == 'home') {
+
+    }
+
+    switch (page) {
+        case 'home':
+            hljs.highlightAll();
+            break;
+        case 'lab':
+            ColorTools.init();
+            break;
+    }
+}
