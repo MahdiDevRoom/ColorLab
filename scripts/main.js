@@ -148,6 +148,7 @@ const Lab = {
         this.c = new ColorLab();
         this.previewElm = document.querySelector('#convert .color-preview');
         this.inputElm = document.querySelector('#convert .color-input');
+        this.shuffleElm = document.querySelector('#convert .color-shuffle');
 
         this.keywordElm = document.querySelector('#convert .keyword');
         this.hexElm = document.querySelector('#convert .hex');
@@ -157,6 +158,13 @@ const Lab = {
         this.cmykElm = document.querySelector('#convert .cmyk');
 
         this.inputElm.oninput = () => this.input(this.inputElm.value);
+        this.shuffleElm.onclick = () => this.shuffle();
+
+        this.shuffle();
+        
+    },
+
+    shuffle(){
         this.input(this.c.randomColor());
     },
 
