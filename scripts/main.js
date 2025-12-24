@@ -146,44 +146,86 @@ const Appbar = {
 const Lab = {
     init() {
         this.c = new ColorLab();
-        this.previewElm = document.querySelector('#convert .color-preview');
-        this.inputElm = document.querySelector('#convert .color-input');
-        this.shuffleElm = document.querySelector('#convert .color-shuffle');
 
-        this.keywordElm = document.querySelector('#convert .keyword');
-        this.hexElm = document.querySelector('#convert .hex');
-        this.rgbElm = document.querySelector('#convert .rgb');
-        this.hslElm = document.querySelector('#convert .hsl');
-        this.hsvElm = document.querySelector('#convert .hsv');
-        this.cmykElm = document.querySelector('#convert .cmyk');
+        this.dom = {
+            convert: {
+                preview: document.querySelector('#convert .preview'),
+                colorInput: document.querySelector('#convert .color-input'),
+                shuffle: document.querySelector('#convert .shuffle'),
+                keyword: document.querySelector('#convert .keyword'),
+                hex: document.querySelector('#convert .hex'),
+                rgb: document.querySelector('#convert .rgb'),
+                hsl: document.querySelector('#convert .hsl'),
+                hsv: document.querySelector('#convert .hsv'),
+                cmyk: document.querySelector('#convert .cmyk'),
+            },
+            mix: {
+                preview: document.querySelector('#mix .preview'),
+                preview1: document.querySelector('#mix .preview-1'),
+                preview2: document.querySelector('#mix .preview-2'),
+                colorInput1: document.querySelector('#mix .color-input-1'),
+                colorInput2: document.querySelector('#mix .color-input-2'),
+            }
+        };
 
-        this.inputElm.oninput = () => this.input(this.inputElm.value);
-        this.shuffleElm.onclick = () => this.shuffle();
+        this.dom.convert.colorInput.oninput = () => this.api.convert.input(this.dom.convert.colorInput.value);
+        this.dom.convert.shuffle.onclick = () => this.api.convert.shuffle();
 
-        this.shuffle();
-        
+        this.dom.mix.colorInput1.oninput = () => this.api.mix.input(this.dom.mix.colorInput1.value, this.dom.mix.colorInput2.value);
+        this.dom.mix.colorInput2.oninput = () => this.api.mix.input(this.dom.mix.colorInput1.value, this.dom.mix.colorInput2.value);
+
+        this.api.convert.shuffle();
+        this.api.mix.shuffle();
     },
 
-    shuffle(){
-        this.input(this.c.randomColor());
-    },
+    api: {
+        convert: {
+            shuffle() {
+                Lab.api.convert.input(Lab.c.randomColor());
+            },
 
-    input(color) {
-        this.preview(color);
-        this.inputElm.value = color;
+            input(color) {
+                this.preview(color);
+                Lab.dom.convert.colorInput.value = color;
 
-        this.keywordElm.innerHTML = this.c.getNearestColor(color);
-        this.hexElm.innerHTML = this.c.toHex(color);
-        this.rgbElm.innerHTML = this.c.toRgb(color);
-        this.hslElm.innerHTML = this.c.toHsl(color);
-        this.hsvElm.innerHTML = this.c.toHsv(color);
-        this.cmykElm.innerHTML = this.c.toCmyk(color);
-    },
+                Lab.dom.convert.keyword.textContent = Lab.c.getNearestColor(color);
+                Lab.dom.convert.hex.textContent = Lab.c.toHex(color);
+                Lab.dom.convert.rgb.textContent = Lab.c.toRgb(color);
+                Lab.dom.convert.hsl.textContent = Lab.c.toHsl(color);
+                Lab.dom.convert.hsv.textContent = Lab.c.toHsv(color);
+                Lab.dom.convert.cmyk.textContent = Lab.c.toCmyk(color);
+            },
 
-    preview(color) {
-        this.previewElm.style.background = this.c.toHex(color);
+            preview(color) {
+                Lab.dom.convert.preview.style.background = Lab.c.toHex(color);
+            }
+        },
+
+        mix: {
+            shuffle() {
+                Lab.api.mix.input(Lab.c.randomColor(), Lab.c.randomColor());
+            },
+            input(color1, color2) {
+                this.preview1(color1);
+                this.preview2(color2);
+                this.preview(Lab.c.mixColor(color1, color2));
+
+                Lab.dom.mix.colorInput1.value = color1;
+                Lab.dom.mix.colorInput2.value = color2;
+            },
+
+            preview(color) {
+                Lab.dom.mix.preview.style.background = color;
+            },
+            preview1(color) {
+                Lab.dom.mix.preview1.style.background = Lab.c.toHex(color);
+            },
+            preview2(color) {
+                Lab.dom.mix.preview2.style.background = Lab.c.toHex(color);
+            },
+        }
     }
-}
+};
 function freeze(duration = 100, exceptions = {}) {
     const css = document.createElement("style");
     const selectors = Object.keys(exceptions);
@@ -227,12 +269,21 @@ Appbar.init();
 
 Page.onloadpage = ({ detail }) => {
     let page = detail.page;
+    let title = document.querySelector('header .title');
     switch (page) {
         case 'home':
+            title.innerHTML = 'ColorLab.js';
             hljs.highlightAll();
             break;
         case 'lab':
+            title.innerHTML = 'Laboratory';
             Lab.init();
             break;
+        case 'docs':
+            title.innerHTML = 'Documents';
+            break
+        case 'changelog':
+            title.innerHTML = 'Changelog';
+            break
     }
 }
