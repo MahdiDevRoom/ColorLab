@@ -99,7 +99,7 @@ const Page = {
                 }
                 if (addHistory) history.pushState({ page: input }, "", `#${input}`);
             })
-        this.setActiveMenu(input);
+        this.setActiveMenu(name);
     },
 
     dispatchEvent(detail) {
