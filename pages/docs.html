@@ -1,0 +1,61 @@
+<main>
+    <section id="introduction">
+        <h1 class="c-title">
+            <div class="title">ColorLab.js</div>
+            <div class="subtitle">Documents</div>
+        </h1>
+
+        <p>
+            ColorLab.js is a <u class="c-underline">lightweight</u> script that provides color tools for designers, such
+            as color mixing and color harmonies.
+        </p>
+    </section>
+
+    <hr>
+
+    <section id="installation">
+        <h2 class="c-title">
+            <div class="title">Installation</div>
+        </h2>
+        <p>
+            To install, simply add the class code to your project,
+            or <a download="ColorLab.js" class="c-link" href="./dist/ColorLab.js"> download </a>
+            the script and include it in your HTML document.
+        </p>
+
+        <pre><code class="hljs language-html">
+&lt;script src="path/to/colorlab.js">&lt;/scripts>
+        </code></pre>
+
+        <p> now call it:</p>
+
+        <pre><code class="hljs language-js">
+const C = new ColorLab();
+        </code></pre>
+
+    </section>
+
+    <hr>
+
+    <section id="convert">
+        <h3 class="c-title">
+            <div class="title">Convert</div>
+        </h3>
+
+        <p>
+            ColorLab.js allows you to convert colors between multiple formats including <mark>Keyword</mark>, <mark>HEX</mark>, <mark>HSL</mark>, <mark>HSV</mark>, <mark>RGB</mark>, and <mark>CMYK</mark> with ease.
+        </p>
+
+        <pre><code class="hljs language-js">
+C.toHex('RoyalBlue'); // #4169E1
+C.toRgb('RoyalBlue'); // rgb(65 105 225)
+C.toHsl('RoyalBlue'); // hsl(225 73% 57%)
+C.toHsv('RoyalBlue'); // hsv(225 71% 88%)
+C.toCmyk('RoyalBlue'); // cmyk(71% 53% 0% 12%)
+        </code></pre>
+
+        <button onclick="Page.open('lab-convert')"> See In Lab </button>
+
+    </section>
+
+</main>

@@ -294,6 +294,7 @@ Page.onloadpage = ({ detail }) => {
             break;
         case 'docs':
             title.innerHTML = 'Documents';
+            hljs.highlightAll();
             break
         case 'changelog':
             title.innerHTML = 'Changelog';
