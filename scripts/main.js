@@ -158,6 +158,10 @@ const Lab = {
                 hsv: document.querySelector('#convert .hsv'),
                 cmyk: document.querySelector('#convert .cmyk'),
             },
+            normalize: {
+                input: document.querySelector('#normalize .input'),
+                output: document.querySelector('#normalize .output'),
+            },
             mix: {
                 preview: document.querySelector('#mix .preview'),
                 preview1: document.querySelector('#mix .preview-1'),
@@ -167,8 +171,13 @@ const Lab = {
             }
         };
 
+        // convert
         this.dom.convert.colorInput.oninput = () => this.api.convert.input(this.dom.convert.colorInput.value);
 
+        // normalize
+        this.dom.normalize.input.oninput = ()=> this.api.normalize.input(this.dom.normalize.input.value);
+
+        // mix
         this.dom.mix.colorInput1.oninput = () => this.api.mix.input(this.dom.mix.colorInput1.value, this.dom.mix.colorInput2.value);
         this.dom.mix.colorInput2.oninput = () => this.api.mix.input(this.dom.mix.colorInput1.value, this.dom.mix.colorInput2.value);
 
@@ -196,6 +205,12 @@ const Lab = {
 
             preview(color) {
                 Lab.dom.convert.preview.style.background = Lab.c.toHex(color);
+            }
+        },
+
+        normalize: {
+            input(color){
+                Lab.dom.normalize.output.innerHTML = Lab.c.normalize(color);
             }
         },
 

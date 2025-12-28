@@ -867,13 +867,15 @@ class ColorLab {
    detect(input) {
       input = String(input).trim().toLowerCase();
       const colors = Array.from(this.#COLORS_MAP.keys());
+
+      const trimmed = this.#trimCase(input);
       
-      if (colors.includes(this.#trimCase(input))) return "keyword";
-      if (this.#R.hex.test(input)) return "hex";
-      if (this.#R.rgb.test(input)) return "rgb";
-      if (this.#R.hsl.test(input)) return "hsl";
-      if (this.#R.hsv.test(input)) return "hsv";
-      if (this.#R.cmyk.test(input)) return "cmyk";
+      if (colors.includes(trimmed)) return "keyword";
+      if (this.#R.hex.test(trimmed)) return "hex";
+      if (this.#R.rgb.test(trimmed)) return "rgb";
+      if (this.#R.hsl.test(trimmed)) return "hsl";
+      if (this.#R.hsv.test(trimmed)) return "hsv";
+      if (this.#R.cmyk.test(trimmed)) return "cmyk";
       
       return undefined;
    }
