@@ -151,7 +151,6 @@ const Lab = {
             convert: {
                 preview: document.querySelector('#convert .preview'),
                 colorInput: document.querySelector('#convert .color-input'),
-                shuffle: document.querySelector('#convert .shuffle'),
                 keyword: document.querySelector('#convert .keyword'),
                 hex: document.querySelector('#convert .hex'),
                 rgb: document.querySelector('#convert .rgb'),
@@ -169,7 +168,6 @@ const Lab = {
         };
 
         this.dom.convert.colorInput.oninput = () => this.api.convert.input(this.dom.convert.colorInput.value);
-        this.dom.convert.shuffle.onclick = () => this.api.convert.shuffle();
 
         this.dom.mix.colorInput1.oninput = () => this.api.mix.input(this.dom.mix.colorInput1.value, this.dom.mix.colorInput2.value);
         this.dom.mix.colorInput2.oninput = () => this.api.mix.input(this.dom.mix.colorInput1.value, this.dom.mix.colorInput2.value);
@@ -188,12 +186,12 @@ const Lab = {
                 this.preview(color);
                 Lab.dom.convert.colorInput.value = color;
 
-                Lab.dom.convert.keyword.textContent = Lab.c.getNearestColor(color);
-                Lab.dom.convert.hex.textContent = Lab.c.toHex(color);
-                Lab.dom.convert.rgb.textContent = Lab.c.toRgb(color);
-                Lab.dom.convert.hsl.textContent = Lab.c.toHsl(color);
-                Lab.dom.convert.hsv.textContent = Lab.c.toHsv(color);
-                Lab.dom.convert.cmyk.textContent = Lab.c.toCmyk(color);
+                Lab.dom.convert.keyword.textContent = Lab.c.getNearestColor(color) || 'undefined';
+                Lab.dom.convert.hex.textContent = Lab.c.toHex(color) || 'undefined';
+                Lab.dom.convert.rgb.textContent = Lab.c.toRgb(color) || 'undefined';
+                Lab.dom.convert.hsl.textContent = Lab.c.toHsl(color) || 'undefined';
+                Lab.dom.convert.hsv.textContent = Lab.c.toHsv(color) || 'undefined';
+                Lab.dom.convert.cmyk.textContent = Lab.c.toCmyk(color) || 'undefined';
             },
 
             preview(color) {
