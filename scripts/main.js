@@ -94,9 +94,8 @@ const Page = {
                     queueMicrotask(() => {
                         const elm = document.getElementById(section);
                         if (elm) elm.scrollIntoView({ behavior: "smooth" });
-
                     });
-                }
+                } else window.scrollTo({top: 0,behavior: 'smooth'});
                 if (addHistory) history.pushState({ page: input }, "", `#${input}`);
             })
         this.setActiveMenu(name);
@@ -175,7 +174,7 @@ const Lab = {
         this.dom.convert.colorInput.oninput = () => this.api.convert.input(this.dom.convert.colorInput.value);
 
         // normalize
-        this.dom.normalize.input.oninput = ()=> this.api.normalize.input(this.dom.normalize.input.value);
+        this.dom.normalize.input.oninput = () => this.api.normalize.input(this.dom.normalize.input.value);
 
         // mix
         this.dom.mix.colorInput1.oninput = () => this.api.mix.input(this.dom.mix.colorInput1.value, this.dom.mix.colorInput2.value);
@@ -209,7 +208,7 @@ const Lab = {
         },
 
         normalize: {
-            input(color){
+            input(color) {
                 Lab.dom.normalize.output.innerHTML = Lab.c.normalize(color);
             }
         },
