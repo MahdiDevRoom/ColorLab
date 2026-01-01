@@ -43,15 +43,16 @@ const C = new ColorLab();
         </h3>
 
         <p>
-            ColorLab.js allows you to convert colors between multiple formats including <mark>Keyword</mark>, <mark>HEX</mark>, <mark>HSL</mark>, <mark>HSV</mark>, <mark>RGB</mark>, and <mark>CMYK</mark> with ease.
+            ColorLab.js allows you to convert colors between multiple formats including <mark>Keyword</mark>,
+            <mark>HEX</mark>, <mark>HSL</mark>, <mark>HSV</mark>, <mark>RGB</mark>, and <mark>CMYK</mark> with ease.
         </p>
 
         <pre><code class="hljs language-js">
-C.toHex('RoyalBlue'); // #4169E1
-C.toRgb('RoyalBlue'); // rgb(65 105 225)
-C.toHsl('RoyalBlue'); // hsl(225 73% 57%)
-C.toHsv('RoyalBlue'); // hsv(225 71% 88%)
-C.toCmyk('RoyalBlue'); // cmyk(71% 53% 0% 12%)
+C.toHex('RoyalBlue'); // '#4169E1'
+C.toRgb('RoyalBlue'); // 'rgb(65 105 225)'
+C.toHsl('RoyalBlue'); // 'hsl(225 73% 57%)'
+C.toHsv('RoyalBlue'); // 'hsv(225 71% 88%)'
+C.toCmyk('RoyalBlue'); // 'cmyk(71% 53% 0% 12%)'
         </code></pre>
 
         <button onclick="Page.open('lab-convert')"> See In The Lab </button>
@@ -60,17 +61,38 @@ C.toCmyk('RoyalBlue'); // cmyk(71% 53% 0% 12%)
 
     <hr>
 
+    <section id="is-color">
+        <h3 style="font-size: 24px;" class="c-title">
+            <div class="title">Is Color ?</div>
+        </h3>
+
+        <p>
+            <mark>isColor()</mark> checks whether the given input is a valid and supported color format.
+            It returns <mark>true</mark> for valid color values and <mark>false</mark> otherwise.
+        </p>
+
+        <pre><code class="hljs language-js">
+C.normalize('apple'); // false
+        </code></pre>
+
+        <button onclick="Page.open('lab-is-color')"> See In The Lab </button>
+    </section>
+    <hr>
+
     <section id="normalize">
         <h3 style="font-size: 24px;" class="c-title">
             <div class="title">Normalize</div>
         </h3>
 
+        <p>
+            Normalizes any supported color format into a standardized output.
+        </p>
+
         <pre><code class="hljs language-js">
-C.toHex('RoyalBlue'); // #4169E1
-C.toRgb('RoyalBlue'); // rgb(65 105 225)
-C.toHsl('RoyalBlue'); // hsl(225 73% 57%)
-C.toHsv('RoyalBlue'); // hsv(225 71% 88%)
-C.toCmyk('RoyalBlue'); // cmyk(71% 53% 0% 12%)
+C.normalize('seagreen'); // 'seagreen'
+C.normalize('hsl(129, 80, 56)'); // 'hsl(129deg 80% 56% / 1)'
+C.normalize('rgba(12 200 100 0.5)'); // 'rgba(12 200 100 0.5)'
+C.normalize('#f02'); // '#FF0022FF'
         </code></pre>
 
         <button onclick="Page.open('lab-normalize')"> See In The Lab </button>

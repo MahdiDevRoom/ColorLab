@@ -94,8 +94,8 @@ const Page = {
                     queueMicrotask(() => {
                         const elm = document.getElementById(section);
                         if (!elm) return;
-
-                        const offset = 105;
+                        
+                        const offset = 86;
                         const y =
                             elm.getBoundingClientRect().top +
                             window.pageYOffset -
@@ -173,6 +173,10 @@ const Lab = {
                 input: document.querySelector('#normalize .input'),
                 output: document.querySelector('#normalize .output'),
             },
+            iscolor: {
+                input: document.querySelector('#is-color .input'),
+                output: document.querySelector('#is-color .output'),
+            },
             mix: {
                 preview: document.querySelector('#mix .preview'),
                 preview1: document.querySelector('#mix .preview-1'),
@@ -184,6 +188,9 @@ const Lab = {
 
         // convert
         this.dom.convert.colorInput.oninput = () => this.api.convert.input(this.dom.convert.colorInput.value);
+
+        // is color
+        this.dom.iscolor.input.oninput = () => this.api.iscolor.input(this.dom.iscolor.input.value);
 
         // normalize
         this.dom.normalize.input.oninput = () => this.api.normalize.input(this.dom.normalize.input.value);
@@ -216,6 +223,15 @@ const Lab = {
 
             preview(color) {
                 Lab.dom.convert.preview.style.background = Lab.c.toHex(color);
+            }
+        },
+
+        iscolor: {
+            input(color) {
+                let elm = Lab.dom.iscolor.output;
+                let log = Lab.c.isColor(color);
+                elm.innerHTML = log;
+                elm.classList.toggle('true', log);
             }
         },
 

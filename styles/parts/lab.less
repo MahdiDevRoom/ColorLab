@@ -1,3 +1,11 @@
+.lab {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    gap: 16px;
+}
+
 .lab #convert .main {
     display: flex;
     flex-direction: row;
@@ -66,6 +74,32 @@
     }
 }
 
+.lab #is-color .main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 8px;
+    .input {
+        border-radius: 32px 8px 8px 32px;
+        flex-grow: 1;
+    }
+    .output{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--error);
+        color: var(--on-error);
+        border-radius: 8px 32px 32px 8px;
+        padding-inline: 16px;
+        font-variation-settings: "wght" 1000;
+        &.true{
+            background: var(--primary);
+            color: var(--on-primary);
+        }
+    }
+}
+
 .lab #normalize .main{
     display: flex;
     flex-direction: column;
@@ -95,6 +129,7 @@
         border-radius: 8px 8px 32px 32px;
         height: 54px;
         min-width: 250px;
+        user-select: all;
     }
 }
 
@@ -146,3 +181,4 @@
         }
     }
 }
+
