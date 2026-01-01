@@ -93,9 +93,21 @@ const Page = {
                 if (section) {
                     queueMicrotask(() => {
                         const elm = document.getElementById(section);
-                        if (elm) elm.scrollIntoView({ behavior: "smooth" });
+                        if (!elm) return;
+
+                        const offset = 105;
+                        const y =
+                            elm.getBoundingClientRect().top +
+                            window.pageYOffset -
+                            offset;
+
+                        window.scrollTo({
+                            top: y,
+                            behavior: "smooth"
+                        });
                     });
-                } else window.scrollTo({top: 0,behavior: 'smooth'});
+
+                } else window.scrollTo({ top: 0, behavior: 'smooth' });
                 if (addHistory) history.pushState({ page: input }, "", `#${input}`);
             })
         this.setActiveMenu(name);

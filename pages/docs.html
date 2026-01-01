@@ -1,4 +1,4 @@
-<main>
+<main class="docs">
     <section id="introduction">
         <h1 class="c-title">
             <div class="title">ColorLab.js</div>
@@ -38,7 +38,7 @@ const C = new ColorLab();
     <hr>
 
     <section id="convert">
-        <h3 class="c-title">
+        <h3 style="font-size: 24px;" class="c-title">
             <div class="title">Convert</div>
         </h3>
 
@@ -56,6 +56,24 @@ C.toCmyk('RoyalBlue'); // cmyk(71% 53% 0% 12%)
 
         <button onclick="Page.open('lab-convert')"> See In The Lab </button>
 
+    </section>
+
+    <hr>
+
+    <section id="normalize">
+        <h3 style="font-size: 24px;" class="c-title">
+            <div class="title">Normalize</div>
+        </h3>
+
+        <pre><code class="hljs language-js">
+C.toHex('RoyalBlue'); // #4169E1
+C.toRgb('RoyalBlue'); // rgb(65 105 225)
+C.toHsl('RoyalBlue'); // hsl(225 73% 57%)
+C.toHsv('RoyalBlue'); // hsv(225 71% 88%)
+C.toCmyk('RoyalBlue'); // cmyk(71% 53% 0% 12%)
+        </code></pre>
+
+        <button onclick="Page.open('lab-normalize')"> See In The Lab </button>
     </section>
 
 </main>
