@@ -5,12 +5,28 @@ footer {
 
     &>.top {
         padding: 32px;
+        .title{
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            gap: 12px;
+            img{
+                height: 52px;
+            }
+            span {
+                font-size: 32px;
+                font-variation-settings: "wght" 1000, "wdth" 20;
+            }
+        }
     }
 
     &>.bottom {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 24px;
         padding: 32px;
 
         .linkbar {
@@ -55,6 +71,12 @@ footer {
                 svg {
                     height: 30px;
                 }
+            }
+        }
+
+        .copyright{
+            span{
+                vertical-align: middle;
             }
         }
     }
