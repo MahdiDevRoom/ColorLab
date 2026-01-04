@@ -329,7 +329,7 @@ class ColorLab {
          let Y = parseInt(match[3]);
          let K = parseFloat(parseFloat(match[4]).toFixed(2));
          let A = 1;
-         return { C, M, Y, K, A };
+         return { C, M, Y, K };
       },
    }
    
@@ -578,7 +578,7 @@ class ColorLab {
             let channels = this.#C.hsl(hsl);
             if (!channels) return undefined;
             let { H, S, L, A } = channels;
-            return A === 1 ? `hsl(${H} ${S} ${L})` : `hsl(${H} ${S} ${L} / ${A})`;
+            return A === 1 ? `hsl(${H} ${S}% ${L}%)` : `hsl(${H} ${S}% ${L}% / ${A})`;
          },
          hsv: (hsl) => {
             let rgb = this.#T.hsl.rgb(hsl);
@@ -737,7 +737,7 @@ class ColorLab {
       return parseFloat(parseFloat(input1).toFixed(input2));
    }
    #splitPascalCase(input) {
-      return input.split(/(?=[A-Z])/).join(" ");
+      return input === undefined ? undefined : input.split(/(?=[A-Z])/).join(" ");
    }
    #trimCase(input) {
       return input.replace(/\s+/g, '').toLowerCase();

@@ -1,9 +1,10 @@
 <main class="docs">
+    <!-- Introduction -->
     <section id="introduction">
-        <h1 class="c-title">
+        <h2 class="c-title">
             <div class="title">ColorLab.js</div>
             <div class="subtitle">Documents</div>
-        </h1>
+        </h2>
 
         <p>
             ColorLab.js is a <u class="c-underline">lightweight</u> script that provides color tools for designers, such
@@ -13,89 +14,637 @@
 
     <hr>
 
+    <!-- Installation -->
     <section id="installation">
         <h2 class="c-title">
             <div class="title">Installation</div>
         </h2>
+
         <p>
             To install, simply add the class code to your project,
-            or <a download="ColorLab.js" class="c-link" href="./dist/ColorLab.js"> download </a>
+            or <a download="ColorLab.js" class="c-link" href="./dist/ColorLab.js">download</a>
             the script and include it in your HTML document.
         </p>
 
         <pre><code class="hljs language-html">
-&lt;script src="path/to/colorlab.js">&lt;/scripts>
-        </code></pre>
+// Include the script in your HTML:
+&lt;script src="path/to/ColorLab.js">&lt;/script>
+    </code></pre>
 
-        <p> now call it:</p>
+        <p>Now call it:</p>
 
         <pre><code class="hljs language-js">
+// Example usage:
 const C = new ColorLab();
-        </code></pre>
-
+console.log(C.version); // '1.0.0'
+    </code></pre>
     </section>
 
     <hr>
 
-    <section id="convert">
-        <h3 style="font-size: 24px;" class="c-title">
-            <div class="title">Convert</div>
+    <!-- Convert Methods -->
+    <section id="convert-methods">
+        <h3 class="c-title">
+            <div class="title">Color Converts</div>
+            <div class="subtitle">
+                toHex(), toHexChannels(), toRgb(), toRgbChannels(), toHsl(), toHslChannels(), toHsv(),
+                toHsvChannels(), toCmyk(), toCmykChannels(), toAllFormat(), toAllFormatChannels()
+            </div>
         </h3>
 
-        <p>
-            ColorLab.js allows you to convert colors between multiple formats including <mark>Keyword</mark>,
-            <mark>HEX</mark>, <mark>HSL</mark>, <mark>HSV</mark>, <mark>RGB</mark>, and <mark>CMYK</mark> with ease.
-        </p>
-
+        <h4 id="toHex" class="c-title">
+            <div class="title">toHex()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Converts any supported color input to a normalized HEX string.</p>
         <pre><code class="hljs language-js">
-C.toHex('RoyalBlue'); // '#4169E1'
-C.toRgb('RoyalBlue'); // 'rgb(65 105 225)'
-C.toHsl('RoyalBlue'); // 'hsl(225 73% 57%)'
-C.toHsv('RoyalBlue'); // 'hsv(225 71% 88%)'
-C.toCmyk('RoyalBlue'); // 'cmyk(71% 53% 0% 12%)'
-        </code></pre>
+C.toHex('rgb(255 0 0)'); // '#FF0000'
+    </code></pre>
 
-        <button onclick="Page.open('lab-convert')"> See In The Lab </button>
+        <h4 id="toHexChannels" class="c-title">
+            <div class="title">toHexChannels()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Returns HEX channel values as an object (R,G,B,A hex pairs).</p>
+        <pre><code class="hljs language-js">
+C.toHexChannels('rgb(255 0 0)'); // { R: 'FF', G: '00', B: '00', A: 'FF' }
+    </code></pre>
 
+        <h4 id="toRgb" class="c-title">
+            <div class="title">toRgb()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Converts input to normalized RGB(/A) string.</p>
+        <pre><code class="hljs language-js">
+C.toRgb('#FF6347'); // 'rgb(255 99 71)'
+C.toRgb('hsl(120 100% 25%)'); // 'rgb(0 128 0)'
+    </code></pre>
+
+        <h4 id="toRgbChannels" class="c-title">
+            <div class="title">toRgbChannels()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Returns RGB channel object.</p>
+        <pre><code class="hljs language-js">
+C.toRgbChannels('#FF6347'); // { R: 255, G: 99, B: 71, A: 1 }
+    </code></pre>
+
+        <h4 id="toHsl" class="c-title">
+            <div class="title">toHsl()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Converts input to HSL(/A) string.</p>
+        <pre><code class="hljs language-js">
+C.toHsl('#FF0000'); // 'hsl(0 100% 50%)'
+C.toHsl('Royal Blue'); // 'hsl(225 73% 57%)'
+    </code></pre>
+
+        <h4 id="toHslChannels" class="c-title">
+            <div class="title">toHslChannels()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Returns HSL channel object.</p>
+        <pre><code class="hljs language-js">
+C.toHslChannels('#FF0000'); // { H: 0, S: 100, L: 50, A: 1 }
+    </code></pre>
+
+        <h4 id="toHsv" class="c-title">
+            <div class="title">toHsv()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Converts input to HSV(/A) string.</p>
+        <pre><code class="hljs language-js">
+C.toHsv('#A9004B'); // 'hsv(333 100% 66%)'
+    </code></pre>
+
+        <h4 id="toHsvChannels" class="c-title">
+            <div class="title">toHsvChannels()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Returns HSV channel object.</p>
+        <pre><code class="hljs language-js">
+C.toHsvChannels('#FF0000'); // { H: 0, S: 100, V: 100, A: 1 }
+    </code></pre>
+
+        <h4 id="toCmyk" class="c-title">
+            <div class="title">toCmyk()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Converts input to CMYK string.</p>
+        <pre><code class="hljs language-js">
+C.toCmyk('Blue Violet'); // 'cmyk(39% 81% 0% 11%)'
+    </code></pre>
+
+        <h4 id="toCmykChannels" class="c-title">
+            <div class="title">toCmykChannels()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Returns CMYK channel object.</p>
+        <pre><code class="hljs language-js">
+C.toCmyk('Blue Violet'); // { C: 39, M: 81, Y: 0, K: 11 }
+    </code></pre>
+
+        <h4 id="toAllFormat" class="c-title">
+            <div class="title">toAllFormat()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Returns all formats (keyword, hex, rgb, hsl, hsv, cmyk) as strings.</p>
+        <pre><code class="hljs language-js">
+C.toAllFormat('Pink');
+// {
+//     cmyk: 'cmyk(0% 25% 20% 0%)',
+//     hex: '#FFC0CB',
+//     hsl: 'hsl(350 100% 88%)',
+//     hsv: 'hsv(350 25% 100%)',
+//     keyword: 'Pink',
+//     rgb: 'rgb(255 192 203)'
+// }
+    </code></pre>
+
+        <h4 id="toAllFormatChannels" class="c-title">
+            <div class="title">toAllFormatChannels()</div>
+            <div class="subtitle">Color Converts</div>
+        </h4>
+        <p>Returns all formats as channel objects.</p>
+        <pre><code class="hljs language-js">
+C.toAllFormatChannels('Sea Green');
+// {
+//     'hex': {
+//         'R': '2E',
+//         'G': '8B',
+//         'B': '57',
+//         'A': 'FF'
+//     },
+//     'rgb': {
+//         'R': 46,
+//         'G': 139,
+//         'B': 87,
+//         'A': 1
+//     },
+//     'hsl': {
+//         'H': 146,
+//         'S': 50,
+//         'L': 36,
+//         'A': 1},
+//     'hsv': {
+//         'H': 146,
+//         'S': 67,
+//         'V': 55,
+//         'A': 1
+//     },
+//     'cmyk': {
+//         'C': 67,
+//         'M': 0,
+//         'Y': 37,
+//         'K': 45
+//     }
+// }
+    </code></pre>
     </section>
 
     <hr>
 
-    <section id="is-color">
-        <h3 style="font-size: 24px;" class="c-title">
-            <div class="title">Is Color ?</div>
+    <!-- Helper Methods -->
+    <section id="helper-methods">
+        <h3 class="c-title">
+            <div class="title">Helper Methods</div>
+            <div class="subtitle">normalize(), getChannels(), isColor(), detect(), getAllChannels(), randomColor()</div>
         </h3>
 
-        <p>
-            <mark>isColor()</mark> checks whether the given input is a valid and supported color format.
-            It returns <mark>true</mark> for valid color values and <mark>false</mark> otherwise.
-        </p>
+        <br>
 
+        <h4 id="normalize" class="c-title">
+            <div class="title">normalize()</div>
+            <div class="subtitle">Helper Methods</div>
+        </h4>
+        <p>Normalizes any supported color into a consistent output (or <code>undefined</code> for invalid inputs).</p>
         <pre><code class="hljs language-js">
-C.normalize('apple'); // false
-        </code></pre>
-
-        <button onclick="Page.open('lab-is-color')"> See In The Lab </button>
-    </section>
-    <hr>
-
-    <section id="normalize">
-        <h3 style="font-size: 24px;" class="c-title">
-            <div class="title">Normalize</div>
-        </h3>
-
-        <p>
-            Normalizes any supported color format into a standardized output.
-        </p>
-
-        <pre><code class="hljs language-js">
-C.normalize('seagreen'); // 'seagreen'
+C.normalize('medium SPRiNG green'); // 'Medium Spring Green'
 C.normalize('hsl(129, 80, 56)'); // 'hsl(129deg 80% 56% / 1)'
-C.normalize('rgba(12 200 100 0.5)'); // 'rgba(12 200 100 0.5)'
 C.normalize('#f02'); // '#FF0022FF'
-        </code></pre>
+    </code></pre>
 
-        <button onclick="Page.open('lab-normalize')"> See In The Lab </button>
+        <h4 id="getChannels" class="c-title">
+            <div class="title">getChannels()</div>
+            <div class="subtitle">Helper Methods</div>
+        </h4>
+        <p>Returns channel values for the detected format (keyword returns <code>undefined</code>).</p>
+        <pre><code class="hljs language-js">
+C.getChannels('#244A8D'); // { R: '24', G: '4A', B: '8D', A: 'FF' }
+C.getChannels('hsl(218 59% 35%)'); // { H: 218, S: 59, L: 35, A: 1 }
+    </code></pre>
+
+        <h4 id="isColor" class="c-title">
+            <div class="title">isColor()</div>
+            <div class="subtitle">Helper Methods</div>
+        </h4>
+        <p>Returns <code>true</code> for valid color inputs, otherwise <code>false</code>.</p>
+        <pre><code class="hljs language-js">
+C.isColor('#ff00aa'); // true
+C.isColor('apple'); // false
+    </code></pre>
+
+        <h4 id="detect" class="c-title">
+            <div class="title">detect()</div>
+            <div class="subtitle">Helper Methods</div>
+        </h4>
+        <p>Detects input color type: <code>"keyword"</code>, <code>"hex"</code>, <code>"rgb"</code>, <code>"hsl"</code>,
+            <code>"hsv"</code>, <code>"cmyk"</code>, or <code>undefined</code>.
+        </p>
+        <pre><code class="hljs language-js">
+C.detect('royal blue'); // 'keyword'
+C.detect('#f02'); // 'hex'
+C.detect('rgb(10 20 30)'); // 'rgb'
+    </code></pre>
+
+        <h4 id="randomColor" class="c-title">
+            <div class="title">randomColor()</div>
+            <div class="subtitle">Helper Methods</div>
+        </h4>
+        <p>Generates a random HEX color.</p>
+        <pre><code class="hljs language-js">
+C.randomColor(); // '#3FA2B1'
+    </code></pre>
     </section>
 
+    <hr>
+
+    <!-- Channel Getters -->
+    <section id="channel-getters">
+        <h3 class="c-title">
+            <div class="title">Channel Getters</div>
+            <div class="subtitle">getRed(), getGreen(), getBlue(), getAlpha(), getHue(), getSaturation(),
+                getLightness(), getValue(), getCyan(), getMagenta(), getYellow(), getKey()</div>
+        </h3>
+
+        <h4 id="getRed" class="c-title">
+            <div class="title">getRed()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the red (R) channel value (0-255).</p>
+        <pre><code class="hljs language-js">
+C.getRed('Medium Spring Green'); // 0
+    </code></pre>
+
+        <h4 id="getGreen" class="c-title">
+            <div class="title">getGreen()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the green (G) channel value (0-255).</p>
+        <pre><code class="hljs language-js">
+C.getGreen('Medium Spring Green'); // 250
+    </code></pre>
+
+        <h4 id="getBlue" class="c-title">
+            <div class="title">getBlue()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the blue (B) channel value (0-255).</p>
+        <pre><code class="hljs language-js">
+C.getBlue('Medium Spring Green'); // 154
+    </code></pre>
+
+        <h4 id="getAlpha" class="c-title">
+            <div class="title">getAlpha()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the alpha (A) channel (0-1).</p>
+        <pre><code class="hljs language-js">
+C.getAlpha('Medium Spring Green'); // 0.5
+    </code></pre>
+
+        <h4 id="getHue" class="c-title">
+            <div class="title">getHue()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the hue (H) channel (0-360).</p>
+        <pre><code class="hljs language-js">
+C.getHue('Medium Spring Green'); // 157
+    </code></pre>
+
+        <h4 id="getSaturation" class="c-title">
+            <div class="title">getSaturation()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the saturation (S) channel (0-100).</p>
+        <pre><code class="hljs language-js">
+C.getSaturation('Medium Spring Green'); // 100
+    </code></pre>
+
+        <h4 id="getLightness" class="c-title">
+            <div class="title">getLightness()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the lightness (L) channel (0-100).</p>
+        <pre><code class="hljs language-js">
+C.getLightness('Medium Spring Green'); // 49
+    </code></pre>
+
+        <h4 id="getValue" class="c-title">
+            <div class="title">getValue()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the value (V) channel (0-100).</p>
+        <pre><code class="hljs language-js">
+C.getValue('Medium Spring Green'); // 98
+    </code></pre>
+
+        <h4 id="getCyan" class="c-title">
+            <div class="title">getCyan()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the cyan (C) channel (0-100).</p>
+        <pre><code class="hljs language-js">
+C.getCyan('Medium Spring Green'); // 100
+    </code></pre>
+
+        <h4 id="getMagenta" class="c-title">
+            <div class="title">getMagenta()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the magenta (M) channel (0-100).</p>
+        <pre><code class="hljs language-js">
+C.getMagenta('Medium Spring Green'); // 0
+    </code></pre>
+
+        <h4 id="getYellow" class="c-title">
+            <div class="title">getYellow()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the yellow (Y) channel (0-100).</p>
+        <pre><code class="hljs language-js">
+C.getYellow('Medium Spring Green'); // 38
+    </code></pre>
+
+        <h4 id="getKey" class="c-title">
+            <div class="title">getKey()</div>
+            <div class="subtitle">Channel Getters</div>
+        </h4>
+        <p>Returns the key (K) channel (0-100).</p>
+        <pre><code class="hljs language-js">
+C.getKey('Medium Spring Green'); // 50
+    </code></pre>
+    </section>
+
+    <hr>
+
+    <!-- Contrast & Accessibility -->
+    <section id="contrast-accessibility">
+        <h3 class="c-title">
+            <div class="title">Contrast & Accessibility</div>
+            <div class="subtitle">getNearestColor(), getContrast(), getContrastLevel(), getBestContrastColor()</div>
+        </h3>
+
+        <br>
+
+        <h4 id="getNearestColor" class="c-title">
+            <div class="title">getNearestColor()</div>
+            <div class="subtitle">Contrast & Accessibility</div>
+        </h4>
+        <p>Returns the nearest named keyword color for the input.</p>
+        <pre><code class="hljs language-js">
+C.getNearestColor('#14aaEB'); // 'Dodger Blue'
+    </code></pre>
+
+        <h4 id="getContrast" class="c-title">
+            <div class="title">getContrast()</div>
+            <div class="subtitle">Contrast & Accessibility</div>
+        </h4>
+        <p>Calculates contrast ratio between two colors (WCAG formula).</p>
+        <pre><code class="hljs language-js">
+C.getContrast('#ffffff', '#000000'); // '21.00'
+C.getContrast('#1466EB', '#ffffff'); // '5.08'
+    </code></pre>
+
+        <h4 id="getContrastLevel" class="c-title">
+            <div class="title">getContrastLevel()</div>
+            <div class="subtitle">Contrast & Accessibility</div>
+        </h4>
+        <p>Returns accessibility level based on ratio: <code>AAA</code>, <code>AA</code>, <code>A</code>, or
+            <code>Fail</code>.
+        </p>
+        <pre><code class="hljs language-js">
+C.getContrastLevel(7);   // 'AAA'
+C.getContrastLevel(4.5); // 'AA'
+C.getContrastLevel(3); // 'A'
+C.getContrastLevel(2.5); // 'Fail'
+    </code></pre>
+
+        <h4 id="getBestContrastColor" class="c-title">
+            <div class="title">getBestContrastColor()</div>
+            <div class="subtitle">Contrast & Accessibility</div>
+        </h4>
+        <p>Returns either <code>"#FFFFFF"</code> or <code>"#000000"</code> — whichever provides better contrast against
+            the provided background.</p>
+        <pre><code class="hljs language-js">
+C.getBestContrastColor('#1466EB'); // '#FFFFFF'
+C.getBestContrastColor('#F5F5F5'); // '#000000'
+    </code></pre>
+    </section>
+
+    <hr>
+
+    <!-- Harmonies -->
+    <section id="harmonies">
+        <h3 class="c-title">
+            <div class="title">Color Harmonies</div>
+            <div class="subtitle">getHarmonies()</div>
+        </h3>
+
+        <br>
+
+        <h4 id="getHarmonies" class="c-title">
+            <div class="title">getHarmonies()</div>
+            <div class="subtitle">Color Harmonies</div>
+        </h4>
+        <p>Generates color harmony palettes (analogous, complementary, triadic, tetradic, etc.) based on HSL hue.</p>
+        <pre><code class="hljs language-js">
+C.getHarmonies('#FF0000');
+// {
+//    'analogous': [
+//       '#FF0000',
+//       '#FF8000',
+//       '#FF0080'
+//    ],
+//    'complementary': [
+//       '#FF0000',
+//       '#00FFFF'
+//    ],
+//    'tetradic': [
+//       '#FF0000',
+//       '#FFFF00',
+//       '#00FFFF',
+//       '#0000FF'
+//    ],
+//    'compound': [
+//       '#FF0000',
+//       '#00FF80',
+//       '#0080FF'
+//    ],
+//    'split-complementary': [
+//       '#FF0000',
+//       '#FF8000',
+//       '#00FFFF',
+//       '#0080FF'
+//    ],
+//    'triadic': [
+//       '#FF0000',
+//       '#00FF00',
+//       '#0000FF'
+//    ],
+//    'square': [
+//       '#FF0000',
+//       '#80FF00',
+//       '#8000FF',
+//       '#00FFFF'
+//    ]
+// }
+    </code></pre>
+    </section>
+
+    <hr>
+
+    <!-- Shading -->
+    <section id="shading">
+        <h3 class="c-title">
+            <div class="title">Color Shading</div>
+            <div class="subtitle">getTints(), getShades(), getTones()</div>
+        </h3>
+
+        <br>
+
+        <h4 id="getTints" class="c-title">
+            <div class="title">getTints()</div>
+            <div class="subtitle">Color Shading</div>
+        </h4>
+        <p>Returns a lighter tint of the color by increasing lightness.</p>
+        <pre><code class="hljs language-js">
+C.getTints('#FF0000', 0.25); // '#FF4242'
+    </code></pre>
+
+        <h4 id="getShades" class="c-title">
+            <div class="title">getShades()</div>
+            <div class="subtitle">Color Shading</div>
+        </h4>
+        <p>Returns a darker shade by decreasing lightness.</p>
+        <pre><code class="hljs language-js">
+C.getShades('#FF0000', 0.25); // '#C20000'
+    </code></pre>
+
+        <h4 id="getTones" class="c-title">
+            <div class="title">getTones()</div>
+            <div class="subtitle">Color Shading</div>
+        </h4>
+        <p>Returns a toned color by reducing saturation.</p>
+        <pre><code class="hljs language-js">
+C.getTones('#FF0000', 0.25); // '#DF2020'
+    </code></pre>
+    </section>
+
+    <hr>
+
+    <!-- Mixing -->
+    <section id="mixing">
+        <h3 class="c-title">
+            <div class="title">Color Mixing</div>
+            <div class="subtitle">mixColor()</div>
+        </h3>
+
+        <br>
+
+        <h4 id="mixColor" class="c-title">
+            <div class="title">mixColor()</div>
+            <div class="subtitle">Color Mixing</div>
+        </h4>
+        <p>Mixes two colors in RGB space using the given ratio (0–1).</p>
+        <pre><code class="hljs language-js">
+C.mixColor('#FF0000', '#0000FF'); // '#7F007F'
+C.mixColor('rgb(255 0 0)', 'rgb(0 0 255)', 0.25); // '#BF003F'
+    </code></pre>
+    </section>
+
+    <hr>
+
+    <!-- Utilities & Properties -->
+    <section id="utilities">
+        <h3 class="c-title">
+            <div class="title">Utilities & Properties</div>
+            <div class="subtitle">convert, channels</div>
+        </h3>
+
+        <br>
+
+        <h4 id="convert-prop" class="c-title">
+            <div class="title">convert</div>
+            <div class="subtitle">Utilities & Properties</div>
+        </h4>
+        <p>
+            The <code>convert</code> getter is a powerful, smart API for color transformations.
+            It automatically detects the input color format and allows converting it to any other supported format.
+            The supported formats are: <code>keyword</code>, <code>hex</code>, <code>rgb</code>, <code>hsl</code>,
+            <code>hsv</code>, and <code>cmyk</code>.
+        </p>
+        <p>
+            You can use <code>convert.to.&lt;format&gt;</code> for automatic detection and conversion, or
+            directly call <code>convert.&lt;from&gt;.&lt;to&gt;</code> to specify source and target formats.
+            When the source and target formats are the same (e.g., <code>convert.hsl.hsl()</code>), the method
+            normalizes the color to a standard valid string.
+        </p>
+        <pre><code class="hljs language-js">
+// Automatic detection & conversion:
+C.convert.to.hex('rgb(255 128 0)');      // '#FF8000'
+C.convert.to.rgb('#FF8000');             // 'rgb(255 128 0)'
+
+// Explicit from-to conversion:
+C.convert.rgb.hex('rgb(255 128 0)');     // '#FF8000'
+C.convert.hex.rgb('#FF8000');            // 'rgb(255 128 0)'
+
+// Normalizing a color:
+C.convert.hsl.hsl('hsl(120, 50, 50)');   // 'hsl(120 50% 50%)'
+C.convert.rgb.rgb('rgba(255 24 200 / 0.4)');   // 'rgb(255 24 200 / 0.4)'
+    </code></pre>
+        <p>
+            Notes:
+        <ul>
+            <li><code>convert.to.&lt;format&gt;</code> automatically detects the input type and applies the correct
+                conversion.</li>
+            <li>Calling <code>convert.&lt;from&gt;.&lt;from&gt;</code> (same format) returns a normalized color string.
+            </li>
+            <li>Alpha values are preserved where applicable.</li>
+            <li>Invalid colors return <code>undefined</code>.</li>
+        </ul>
+        </p>
+
+        <h4 id="channels-prop" class="c-title">
+            <div class="title">channels</div>
+            <div class="subtitle">Utilities & Properties</div>
+        </h4>
+        <p>
+            The <code>channels</code> getter provides helpers for constructing colors from individual channels.
+            You can create colors in <code>hex</code>, <code>rgb</code>, <code>hsl</code>, <code>hsv</code>, and
+            <code>cmyk</code>.
+            All outputs are automatically normalized.
+        </p>
+        <pre><code class="hljs language-js">
+// Build color from RGB channels:
+C.channels.rgb.hex(255, 128, 0);          // '#FF8000'
+C.channels.rgb.rgb(255, 128, 0);          // 'rgb(255 128 0)'
+
+// Build color from HSL channels:
+C.channels.hsl.hex(120, 50, 50);          // '#40BF40'
+C.channels.hsl.hsl(120, 50, 50);          // 'hsl(120 50% 50%)'
+
+// Build color from CMYK channels:
+C.channels.cmyk.rgb(0, 50, 100, 0);       // 'rgb(255 128 0)'
+C.channels.cmyk.hex(0, 50, 100, 0);       // '#FF8000'
+    </code></pre>
+        <p>
+            Notes:
+        <ul>
+            <li>Channels are automatically clamped to valid ranges.</li>
+            <li>Alpha channel is optional and defaults to fully opaque.</li>
+            <li>Output strings are compatible with <code>convert</code> for further transformations.</li>
+        </ul>
+        </p>
+    </section>
 </main>

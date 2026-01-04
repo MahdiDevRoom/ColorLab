@@ -1,0 +1,19 @@
+#fab {
+    padding: 0;
+    margin: 0;
+    width: 64px;
+    height: 64px;
+    position: fixed;
+    right: 24px;
+    bottom: 36px;
+    border-radius: 24px;
+    translate: 0 100px;
+    opacity: 0;
+    box-shadow: 0 10px 20px var(--glass);
+    transition: 0.3s;
+
+    &.show{
+        translate: 0 0;
+        opacity: 1;
+    }
+}

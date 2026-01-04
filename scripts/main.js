@@ -27,6 +27,7 @@ const Theme = {
         this.html.setAttribute('theme', name);
         localStorage.setItem('theme', name);
         this.switchElm.checked = name === 'dark';
+        StatusBar.reload();
     },
 
     toggle() {
@@ -86,15 +87,19 @@ const Page = {
         let [name, section] = this.parseInput(input);
 
         fetch(`./pages/${name}.html`)
-            .then(res => res.text())
+            .then(res => {
+                if (!res.ok) throw new Error('Page not found');
+                return res.text();
+            })
             .then(data => {
                 this.pageElm.innerHTML = data;
                 this.dispatchEvent({ page: name });
+
                 if (section) {
                     queueMicrotask(() => {
                         const elm = document.getElementById(section);
                         if (!elm) return;
-                        
+
                         const offset = 86;
                         const y =
                             elm.getBoundingClientRect().top +
@@ -106,10 +111,20 @@ const Page = {
                             behavior: "smooth"
                         });
                     });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
 
-                } else window.scrollTo({ top: 0, behavior: 'smooth' });
-                if (addHistory) history.pushState({ page: input }, "", `#${input}`);
+                if (addHistory)
+                    history.pushState({ page: input }, "", `#${input}`);
             })
+            .catch(() => {
+                if (name !== 'home') {
+                    history.replaceState({ page: 'home' }, "", "#home");
+                    this.open('home', false);
+                }
+            });
+
         this.setActiveMenu(name);
     },
 
@@ -135,137 +150,33 @@ const Page = {
         });
     }
 }
-const Appbar = {
+const Scroll = {
     header: document.querySelector('header'),
+    fab: document.querySelector('#fab'),
     body: document.body,
     init() {
         this.body.onscroll = () => this.scroll();
-    },
-    isSticky() {
-        return this.header.classList.contains('sticky');
-    },
-    stick() {
-        if (this.isSticky) this.header.classList.add('sticky')
-    },
-    unStick() {
-        if (this.isSticky) this.header.classList.remove('sticky')
+        this.fab.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
     },
     scroll() {
-        scrollY >= 100 ? this.stick() : this.unStick();
+        this.header.classList.toggle('sticky', scrollY >= 100);
+        this.fab.classList.toggle('show', scrollY >= 300);
     }
 }
-const Lab = {
+const StatusBar = {
     init() {
-        this.c = new ColorLab();
-
-        this.dom = {
-            convert: {
-                preview: document.querySelector('#convert .preview'),
-                colorInput: document.querySelector('#convert .color-input'),
-                keyword: document.querySelector('#convert .keyword'),
-                hex: document.querySelector('#convert .hex'),
-                rgb: document.querySelector('#convert .rgb'),
-                hsl: document.querySelector('#convert .hsl'),
-                hsv: document.querySelector('#convert .hsv'),
-                cmyk: document.querySelector('#convert .cmyk'),
-            },
-            normalize: {
-                input: document.querySelector('#normalize .input'),
-                output: document.querySelector('#normalize .output'),
-            },
-            iscolor: {
-                input: document.querySelector('#is-color .input'),
-                output: document.querySelector('#is-color .output'),
-            },
-            mix: {
-                preview: document.querySelector('#mix .preview'),
-                preview1: document.querySelector('#mix .preview-1'),
-                preview2: document.querySelector('#mix .preview-2'),
-                colorInput1: document.querySelector('#mix .color-input-1'),
-                colorInput2: document.querySelector('#mix .color-input-2'),
-            }
-        };
-
-        // convert
-        this.dom.convert.colorInput.oninput = () => this.api.convert.input(this.dom.convert.colorInput.value);
-
-        // is color
-        this.dom.iscolor.input.oninput = () => this.api.iscolor.input(this.dom.iscolor.input.value);
-
-        // normalize
-        this.dom.normalize.input.oninput = () => this.api.normalize.input(this.dom.normalize.input.value);
-
-        // mix
-        this.dom.mix.colorInput1.oninput = () => this.api.mix.input(this.dom.mix.colorInput1.value, this.dom.mix.colorInput2.value);
-        this.dom.mix.colorInput2.oninput = () => this.api.mix.input(this.dom.mix.colorInput1.value, this.dom.mix.colorInput2.value);
-
-        this.api.convert.shuffle();
-        this.api.mix.shuffle();
+        this.rootStyles = getComputedStyle(document.documentElement);
+        this.themeColorMeta = document.querySelector('meta[name="theme-color"]');
+        this.color = 'surface';
     },
+    set(varible) {
+        this.themeColorMeta.setAttribute('content', this.rootStyles.getPropertyValue(`--${varible}`).trim());
+    },
+    reload() {
+        this.themeColorMeta.setAttribute('content', this.rootStyles.getPropertyValue(`--${this.color}`).trim());
 
-    api: {
-        convert: {
-            shuffle() {
-                Lab.api.convert.input(Lab.c.randomColor());
-            },
-
-            input(color) {
-                this.preview(color);
-                Lab.dom.convert.colorInput.value = color;
-
-                Lab.dom.convert.keyword.textContent = Lab.c.getNearestColor(color) || 'undefined';
-                Lab.dom.convert.hex.textContent = Lab.c.toHex(color) || 'undefined';
-                Lab.dom.convert.rgb.textContent = Lab.c.toRgb(color) || 'undefined';
-                Lab.dom.convert.hsl.textContent = Lab.c.toHsl(color) || 'undefined';
-                Lab.dom.convert.hsv.textContent = Lab.c.toHsv(color) || 'undefined';
-                Lab.dom.convert.cmyk.textContent = Lab.c.toCmyk(color) || 'undefined';
-            },
-
-            preview(color) {
-                Lab.dom.convert.preview.style.background = Lab.c.toHex(color);
-            }
-        },
-
-        iscolor: {
-            input(color) {
-                let elm = Lab.dom.iscolor.output;
-                let log = Lab.c.isColor(color);
-                elm.innerHTML = log;
-                elm.classList.toggle('true', log);
-            }
-        },
-
-        normalize: {
-            input(color) {
-                Lab.dom.normalize.output.innerHTML = Lab.c.normalize(color);
-            }
-        },
-
-        mix: {
-            shuffle() {
-                Lab.api.mix.input(Lab.c.randomColor(), Lab.c.randomColor());
-            },
-            input(color1, color2) {
-                this.preview1(color1);
-                this.preview2(color2);
-                this.preview(Lab.c.mixColor(color1, color2));
-
-                Lab.dom.mix.colorInput1.value = color1;
-                Lab.dom.mix.colorInput2.value = color2;
-            },
-
-            preview(color) {
-                Lab.dom.mix.preview.style.background = color;
-            },
-            preview1(color) {
-                Lab.dom.mix.preview1.style.background = Lab.c.toHex(color);
-            },
-            preview2(color) {
-                Lab.dom.mix.preview2.style.background = Lab.c.toHex(color);
-            },
-        }
     }
-};
+}
 function freeze(duration = 100, exceptions = {}) {
     const css = document.createElement("style");
     const selectors = Object.keys(exceptions);
@@ -301,10 +212,11 @@ function freeze(duration = 100, exceptions = {}) {
 }
 
 
+StatusBar.init();
 Theme.init();
 Menu.init();
 Page.init();
-Appbar.init();
+Scroll.init();
 
 
 Page.onloadpage = ({ detail }) => {
@@ -315,10 +227,6 @@ Page.onloadpage = ({ detail }) => {
             title.innerHTML = 'ColorLab.js';
             hljs.highlightAll();
             break;
-        case 'lab':
-            title.innerHTML = 'Laboratory';
-            Lab.init();
-            break;
         case 'docs':
             title.innerHTML = 'Documents';
             hljs.highlightAll();
@@ -328,3 +236,6 @@ Page.onloadpage = ({ detail }) => {
             break
     }
 }
+less.pageLoadFinished.then(() => {
+    StatusBar.reload();
+});

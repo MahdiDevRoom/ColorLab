@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" theme="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> ColorLab.js </title>
 
-    <meta name="theme-color" content="var(--s)">
+    <meta name="theme-color">
 
     <!-- styles -->
     <link rel="stylesheet/less" href="./styles/main.less">
@@ -14,7 +14,6 @@
     <!-- scripts -->
     <script src="./scripts/less.js"></script>
     <script src="./scripts/highlight.min.js"></script>
-    <script src="./dist/ColorLab.js"></script>
 </head>
 
 <body>
@@ -54,12 +53,6 @@
                     <div class="text">Home</div>
                     <div class="icon">
                         <div class="symbol">home</div>
-                    </div>
-                </div>
-                <div onclick="Page.open('lab')">
-                    <div class="text">Laboratory</div>
-                    <div class="icon">
-                        <div class="symbol">labs</div>
                     </div>
                 </div>
                 <div onclick="Page.open('docs')">
@@ -130,6 +123,9 @@
 
     </div>
 
+    <!-- FAB -->
+    <button id="fab"> <span class="symbol">arrow_upward</span> </button>
+
     <!-- Footer -->
     <footer>
         <div class="top">
@@ -163,10 +159,6 @@
                     <div onclick="Page.open('home')">
                         <div class="text">Home</div>
                         <div class="icon symbol fill">home</div>
-                    </div>
-                    <div onclick="Page.open('lab')">
-                        <div class="text">Laboratory</div>
-                        <div class="icon symbol fill">labs</div>
                     </div>
                     <div onclick="Page.open('docs')">
                         <div class="text">Documents</div>
