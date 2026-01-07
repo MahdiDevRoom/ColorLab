@@ -161,6 +161,7 @@ const Scroll = {
     scroll() {
         this.header.classList.toggle('sticky', scrollY >= 100);
         this.fab.classList.toggle('show', scrollY >= 300);
+        scrollY >= 100 ? StatusBar.set('background') : StatusBar.set('surface');
     }
 }
 const StatusBar = {
