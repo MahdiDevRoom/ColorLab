@@ -1,7 +1,7 @@
 * {
     font-family: "GoogleSansFlex";
     box-sizing: border-box;
-    user-select: none;
+    // user-select: none;
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
     font-variation-settings:
@@ -14,5 +14,10 @@
 
     &::-webkit-scrollbar {
         display: none;
+    }
+    
+    &::selection{
+        background: var(--scondary);
+        color: var(--on-scondary);
     }
 }
